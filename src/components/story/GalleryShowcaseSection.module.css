@@ -1,0 +1,219 @@
+.section {
+  position: relative;
+  width: 100%;
+  margin-top: -1px;
+  padding: clamp(72px, 10vw, 118px) 0 clamp(90px, 12vw, 132px);
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(64px, 9vw, 120px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 244, 251, 0.95) 100%);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.container {
+  width: min(1220px, 94vw);
+  margin: 0 auto;
+}
+
+.kicker {
+  margin: 0;
+  color: rgba(73, 65, 63, 0.7);
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(0.72rem, 0.9vw, 0.84rem);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 12px 0 0;
+  color: #49413f;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(2rem, 4.8vw, 4.1rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 0.96;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 16px 0 0;
+  max-width: 72ch;
+  color: rgba(73, 65, 63, 0.8);
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(0.96rem, 1.2vw, 1.1rem);
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.grid {
+  margin-top: clamp(26px, 3.4vw, 44px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 20px);
+}
+
+.tile {
+  border: 1px solid rgba(73, 65, 63, 0.14);
+  border-radius: 16px;
+  background: #fff8fc;
+  box-shadow: 0 14px 42px rgba(73, 65, 63, 0.12);
+  overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.tileImageWrap {
+  position: relative;
+  width: 100%;
+  height: clamp(180px, 20vw, 250px);
+  background: #fff;
+  overflow: hidden;
+}
+
+.tileImageBg {
+  object-fit: cover;
+  object-position: center;
+  filter: blur(12px) saturate(0.95);
+  transform: scale(1.08);
+  opacity: 0.5;
+}
+
+.tileImage {
+  object-fit: contain;
+  object-position: center;
+  padding: 8px;
+  z-index: 1;
+}
+
+.tileMeta {
+  padding: 12px 12px 14px;
+}
+
+.tileTitle {
+  margin: 0;
+  color: #49413f;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1rem, 1.18vw, 1.2rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.tileCaption {
+  margin: 8px 0 0;
+  color: rgba(73, 65, 63, 0.78);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(18, 15, 18, 0.62);
+  backdrop-filter: blur(4px);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.modalCard {
+  width: min(960px, 94vw);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: #ffffff;
+  box-shadow: 0 28px 88px rgba(12, 10, 12, 0.4);
+}
+
+.modalImageWrap {
+  position: relative;
+  width: 100%;
+  height: clamp(280px, 62vh, 560px);
+  background: #fff;
+  overflow: hidden;
+}
+
+.modalImageBg {
+  object-fit: cover;
+  object-position: center;
+  filter: blur(16px) saturate(0.95);
+  transform: scale(1.08);
+  opacity: 0.45;
+}
+
+.modalImage {
+  object-fit: contain;
+  object-position: center;
+  padding: 12px;
+  z-index: 1;
+}
+
+.modalMeta {
+  padding: 14px 16px 18px;
+}
+
+.modalTitle {
+  margin: 0;
+  color: #49413f;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  font-weight: 600;
+}
+
+.modalCaption {
+  margin: 8px 0 0;
+  color: rgba(73, 65, 63, 0.8);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.closeButton {
+  margin-top: 14px;
+  min-height: 40px;
+  border: 0;
+  border-radius: 10px;
+  background: #e4adca;
+  color: #49413f;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0 14px;
+  cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tileImageWrap {
+    height: clamp(190px, 54vw, 280px);
+  }
+
+  .modalImageWrap {
+    height: clamp(220px, 46vh, 360px);
+  }
+}

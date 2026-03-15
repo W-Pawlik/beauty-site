@@ -1,0 +1,268 @@
+.page {
+  position: relative;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.title {
+  margin: 0;
+  color: #49413f;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(3.1rem, 6.2vw, 5.6rem);
+  font-weight: 600;
+  letter-spacing: 0.045em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.softCircleLeft,
+.softCircleTop,
+.stripedCircle {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.softCircleLeft {
+  width: clamp(230px, 28vw, 410px);
+  aspect-ratio: 1;
+  left: clamp(8px, 8vw, 140px);
+  top: clamp(198px, 36vh, 320px);
+  background: rgba(234, 222, 217, 0.9);
+}
+
+.softCircleTop {
+  width: clamp(210px, 24vw, 340px);
+  aspect-ratio: 1;
+  top: clamp(68px, 14vh, 150px);
+  left: clamp(286px, 42vw, 560px);
+  background: rgba(231, 219, 214, 0.82);
+}
+
+.stripedCircle {
+  width: clamp(200px, 27vw, 360px);
+  aspect-ratio: 1;
+  right: clamp(92px, 14vw, 236px);
+  bottom: clamp(56px, 10vh, 130px);
+  background: repeating-linear-gradient(
+    -62deg,
+    #111216 0 9px,
+    #ffffff 9px 18px
+  );
+}
+
+.scribble {
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  top: 47%;
+  height: 34px;
+  z-index: 2;
+}
+
+.scribble::before,
+.scribble::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(18, 19, 21, 0.56);
+}
+
+.scribble::before {
+  top: 10px;
+  transform: rotate(-1.8deg);
+}
+
+.scribble::after {
+  top: 18px;
+  transform: rotate(-0.65deg);
+}
+
+.badge {
+  position: absolute;
+  border: 4px solid #e4adca;
+  color: #49413f;
+  background: rgba(255, 255, 255, 0.92);
+  font-family: var(--font-body), sans-serif;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  display: grid;
+  place-items: center;
+  z-index: 3;
+}
+
+.badge span {
+  display: block;
+  padding: 0 8px;
+}
+
+.badgeTopLeft {
+  top: clamp(84px, 14vh, 128px);
+  left: clamp(160px, 24vw, 334px);
+  width: clamp(128px, 14vw, 176px);
+  height: clamp(58px, 5.4vw, 70px);
+}
+
+.badgeLeftBottom {
+  top: clamp(266px, 58vh, 432px);
+  left: clamp(42px, 8vw, 100px);
+  width: clamp(136px, 16.2vw, 206px);
+  height: clamp(58px, 5.4vw, 70px);
+}
+
+.badgeRightTop {
+  top: clamp(118px, 23vh, 182px);
+  right: clamp(36px, 8vw, 102px);
+  width: clamp(136px, 16.2vw, 206px);
+  height: clamp(58px, 5.4vw, 70px);
+}
+
+.portraitRing {
+  position: absolute;
+  left: clamp(196px, 33vw, 476px);
+  top: clamp(152px, 30vh, 252px);
+  width: clamp(154px, 17vw, 218px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: clamp(8px, 1vw, 12px);
+  background: #e4adca;
+  z-index: 4;
+}
+
+.portrait {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.portraitImage {
+  object-fit: cover;
+  object-position: center 32%;
+  filter: contrast(1.02) saturate(0.92) brightness(0.98);
+}
+
+.aboutBlock {
+  position: absolute;
+  left: 50%;
+  width: min(74vw, 980px);
+  top: clamp(276px, 56vh, 428px);
+  transform: translateX(-50%);
+  z-index: 12;
+  background: #ffffff;
+  padding: clamp(16px, 2vw, 28px) clamp(18px, 2.4vw, 34px);
+  border: 1px solid rgba(73, 65, 63, 0.16);
+  box-shadow: 0 18px 46px rgba(73, 65, 63, 0.14);
+}
+
+.columns {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(18px, 2.6vw, 42px);
+}
+
+.columns p {
+  margin: 0;
+  color: rgba(73, 65, 63, 0.86);
+  font-family: var(--font-body), sans-serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  padding-right: 8px;
+}
+
+.columns p:first-child {
+  border-right: 1px solid rgba(73, 65, 63, 0.24);
+}
+
+@media (max-width: 980px) {
+  .softCircleLeft {
+    width: 52vw;
+    left: -8vw;
+    top: 33vh;
+  }
+
+  .softCircleTop {
+    width: 54vw;
+    left: 40vw;
+    top: -2vw;
+  }
+
+  .stripedCircle {
+    width: 50vw;
+    right: -4vw;
+    bottom: 10vh;
+  }
+
+  .badgeTopLeft {
+    left: 28vw;
+    top: 72px;
+    width: 128px;
+    height: 54px;
+  }
+
+  .badgeLeftBottom {
+    left: 12px;
+    top: auto;
+    bottom: 112px;
+    width: 120px;
+    height: 54px;
+  }
+
+  .badgeRightTop {
+    right: 14px;
+    top: 86px;
+    width: 122px;
+    height: 54px;
+  }
+
+  .portraitRing {
+    left: 46%;
+    top: 222px;
+    transform: translateX(-50%);
+    width: 150px;
+  }
+
+  .aboutBlock {
+    left: 22px;
+    right: 22px;
+    top: 300px;
+  }
+
+  .title {
+    font-size: clamp(2.4rem, 12vw, 3.5rem);
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .columns p:first-child {
+    border-right: 0;
+    border-bottom: 1px solid rgba(73, 65, 63, 0.24);
+    padding-bottom: 14px;
+  }
+}

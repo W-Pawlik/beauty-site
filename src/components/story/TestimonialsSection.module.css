@@ -1,0 +1,114 @@
+.section {
+  position: relative;
+  width: 100%;
+  margin-top: -1px;
+  padding: clamp(70px, 10vw, 118px) 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 14% 16%, rgba(228, 173, 202, 0.22), transparent 38%),
+    linear-gradient(180deg, #fff7fc 0%, #fff8fc 64%, #fff4fb 100%);
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: clamp(56px, 8vw, 104px);
+  background: linear-gradient(180deg, rgba(255, 244, 251, 0.9) 0%, rgba(255, 244, 251, 0) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  width: min(1200px, 94vw);
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.kickerWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.kicker {
+  border: 1px solid rgba(73, 65, 63, 0.2);
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: 999px;
+  min-height: 32px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  color: rgba(73, 65, 63, 0.82);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 18px 0 0;
+  color: #49413f;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.8rem, 4.8vw, 3.9rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 14px 0 0;
+  color: rgba(73, 65, 63, 0.78);
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(0.94rem, 1.2vw, 1.08rem);
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.columnsMask {
+  margin-top: clamp(24px, 3.6vw, 40px);
+  display: flex;
+  justify-content: center;
+  gap: clamp(12px, 1.8vw, 22px);
+  max-height: 740px;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 18%,
+    black 82%,
+    transparent
+  );
+}
+
+.secondColumn {
+  display: none;
+}
+
+.thirdColumn {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .secondColumn {
+    display: block;
+  }
+}
+
+@media (min-width: 1120px) {
+  .thirdColumn {
+    display: block;
+  }
+}

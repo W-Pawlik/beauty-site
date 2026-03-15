@@ -1,0 +1,77 @@
+﻿.section {
+  width: 100%;
+  background: #ffffff;
+  padding: 0;
+}
+
+.shell {
+  position: relative;
+  height: clamp(260px, 44dvh, 390px);
+  overflow: hidden;
+}
+
+.imageLayer {
+  position: absolute;
+  inset: -22% 0;
+  background-image: url("/images/woman_talking_on_the_phone_closeup.webp");
+  background-size: cover;
+  background-position: center 42%;
+  will-change: transform;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(110deg, rgba(21, 18, 20, 0.74), rgba(21, 18, 20, 0.5)),
+    radial-gradient(
+      circle at 82% 16%,
+      rgba(228, 173, 202, 0.34),
+      transparent 36%
+    );
+}
+
+.copy {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff9fb;
+  pointer-events: none;
+  padding: 0 20px;
+}
+
+.subheading {
+  margin: 0;
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(0.74rem, 0.9vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 247, 252, 0.88);
+}
+
+.heading {
+  margin: 10px 0 0;
+  max-width: 16ch;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.3rem, 3vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+@media (max-width: 980px) {
+  .shell {
+    height: clamp(220px, 34dvh, 300px);
+  }
+
+  .heading {
+    max-width: 19ch;
+    font-size: clamp(1.1rem, 6vw, 1.7rem);
+  }
+}
