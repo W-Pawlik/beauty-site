@@ -111,14 +111,14 @@ export function GalleryShowcaseSection() {
                   alt=""
                   aria-hidden="true"
                   fill
-                  sizes="(max-width: 980px) 100vw, 33vw"
+                  sizes="(max-width: 980px) 50vw, 33vw"
                   className={styles.tileImageBg}
                 />
                 <Image
                   src={item.src}
                   alt={item.alt}
                   fill
-                  sizes="(max-width: 980px) 100vw, 33vw"
+                  sizes="(max-width: 980px) 50vw, 33vw"
                   className={styles.tileImage}
                 />
               </motion.div>

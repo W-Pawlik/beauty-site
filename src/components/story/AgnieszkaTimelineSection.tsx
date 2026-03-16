@@ -23,7 +23,7 @@ function TimelineRevealImage({ src, alt }: TimelineRevealImageProps) {
         alt={alt}
         width={500}
         height={500}
-        className="h-24 w-full object-cover md:h-44 lg:h-56"
+        className="h-40 w-full object-cover md:h-44 lg:h-56"
       />
     </motion.div>
   );
@@ -34,7 +34,7 @@ const timelineData: TimelineEntry[] = [
     title: "2000",
     content: (
       <div>
-        <p className="mb-6 max-w-3xl text-sm font-medium leading-7 text-[#5f5755] md:text-base">
+        <p className="mb-6 max-w-3xl text-base font-medium leading-8 text-[#5f5755] md:text-base">
           Rozpoczecie kariery w Mary Kay i pierwsze indywidualne konsultacje
           pielegnacyjne. To etap budowania fundamentu pracy z klientkami 1:1.
         </p>
@@ -55,19 +55,19 @@ const timelineData: TimelineEntry[] = [
     title: "2005",
     content: (
       <div>
-        <p className="mb-6 max-w-3xl text-sm font-medium leading-7 text-[#5f5755] md:text-base">
+        <p className="mb-6 max-w-3xl text-base font-medium leading-8 text-[#5f5755] md:text-base">
           Osiagniecie poziomu pierwszych 100 konsultantek w zespole i regularne
           prowadzenie warsztatow produktowych. Marka osobista zaczela byc
           rozpoznawalna lokalnie.
         </p>
         <div className="mb-6 space-y-3">
-          <div className="text-sm font-medium text-[#5f5755] md:text-base">
+          <div className="text-base font-medium text-[#5f5755] md:text-base">
             - Rozwoj zespolu konsultantek
           </div>
-          <div className="text-sm font-medium text-[#5f5755] md:text-base">
+          <div className="text-base font-medium text-[#5f5755] md:text-base">
             - Cykliczne spotkania edukacyjne
           </div>
-          <div className="text-sm font-medium text-[#5f5755] md:text-base">
+          <div className="text-base font-medium text-[#5f5755] md:text-base">
             - Standaryzacja procesu konsultacji
           </div>
         </div>
@@ -88,7 +88,7 @@ const timelineData: TimelineEntry[] = [
     title: "2012",
     content: (
       <div>
-        <p className="mb-6 max-w-3xl text-sm font-medium leading-7 text-[#5f5755] md:text-base">
+        <p className="mb-6 max-w-3xl text-base font-medium leading-8 text-[#5f5755] md:text-base">
           Rozszerzenie dzialan o mentoring liderek i szkolenia z budowania
           trwalych relacji z klientkami. W tym okresie powstaly autorskie
           scenariusze konsultacji.
@@ -110,7 +110,7 @@ const timelineData: TimelineEntry[] = [
     title: "2024",
     content: (
       <div>
-        <p className="mb-6 max-w-3xl text-sm font-medium leading-7 text-[#5f5755] md:text-base">
+        <p className="mb-6 max-w-3xl text-base font-medium leading-8 text-[#5f5755] md:text-base">
           Polaczenie pracy stacjonarnej z formatem online. Rozwoj nowoczesnej
           komunikacji i prowadzenie klientek krok po kroku przez pielegnacje,
           makijaz i dobor produktow.

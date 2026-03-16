@@ -28,10 +28,10 @@
   left: 0;
   right: 0;
   z-index: 48;
-  will-change: transform, opacity;
+  will-change: top, opacity;
   transition:
     opacity 0.28s ease,
-    transform 0.28s ease;
+    top 0.28s ease;
 }
 
 .stickyHeaderInner {

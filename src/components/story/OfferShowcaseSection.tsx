@@ -66,7 +66,6 @@ function CosmeticsPanel({
                 <h4 className={styles.productName}>{item.name}</h4>
                 <p className={styles.productDescription}>{item.description}</p>
                 <p className={styles.productPrice}>Cena: {item.price}</p>
-                <p className={styles.productHint}>Kliknij, aby zobaczyc szczegoly</p>
               </div>
             </motion.button>
           ))}

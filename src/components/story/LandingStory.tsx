@@ -437,7 +437,7 @@ export function LandingStory() {
         style={{
           opacity: stickyHeaderVisibility,
           pointerEvents: stickyHeaderVisibility > 0.02 ? "auto" : "none",
-          transform: `translateY(${(1 - stickyHeaderVisibility) * -18}px)`,
+          top: `${(1 - stickyHeaderVisibility) * -18}px`,
         }}
       >
         <div className={styles.stickyHeaderInner}>

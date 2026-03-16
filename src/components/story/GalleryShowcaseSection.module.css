@@ -204,13 +204,20 @@
   }
 }
 
+@media (max-width: 980px) {
+  .container {
+    width: min(1220px, calc(100% - 40px));
+  }
+}
+
 @media (max-width: 760px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
 
   .tileImageWrap {
-    height: clamp(190px, 54vw, 280px);
+    height: clamp(150px, 38vw, 210px);
   }
 
   .modalImageWrap {

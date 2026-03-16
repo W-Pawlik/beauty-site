@@ -176,6 +176,10 @@
 }
 
 @media (max-width: 980px) {
+  .container {
+    width: min(1320px, calc(100% - 40px));
+  }
+
   .grid {
     grid-template-columns: 1fr;
     gap: 26px;

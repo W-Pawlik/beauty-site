@@ -714,6 +714,10 @@
     padding: 56px 0 76px;
   }
 
+  .container {
+    width: min(1240px, calc(100% - 40px));
+  }
+
   .title {
     font-size: clamp(1.7rem, 10.4vw, 2.8rem);
   }

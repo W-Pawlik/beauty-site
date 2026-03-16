@@ -31,7 +31,6 @@ export function AboutMeSection({ transitionProgress = 0 }: AboutMeSectionProps) 
       >
         <div className={styles.softCircleLeft} />
         <div className={styles.softCircleTop} />
-        <div className={styles.stripedCircle} />
         <div className={styles.scribble} />
 
         <div className={`${styles.badge} ${styles.badgeTopLeft}`}>
