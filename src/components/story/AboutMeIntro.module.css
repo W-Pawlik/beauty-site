@@ -1,6 +1,6 @@
 .page {
   position: relative;
-  height: 100dvh;
+  height: 100svh;
   width: 100%;
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -129,4 +129,5 @@
     top: 66%;
     font-size: clamp(1.7rem, 8vw, 2.6rem);
   }
+
 }

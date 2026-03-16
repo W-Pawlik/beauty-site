@@ -1,5 +1,5 @@
 .storyScroll {
-  height: 100dvh;
+  height: 100svh;
   overflow-y: auto;
   overflow-x: hidden;
   scroll-behavior: auto;
@@ -43,13 +43,13 @@
 
 .storyTrack {
   position: relative;
-  height: 410dvh;
+  height: 410svh;
 }
 
 .storyViewport {
   position: sticky;
   top: 0;
-  height: 100dvh;
+  height: 100svh;
   overflow: hidden;
 }
 

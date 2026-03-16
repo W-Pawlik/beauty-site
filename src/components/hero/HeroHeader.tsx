@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import styles from "./HeroSection.module.css";
 
 const navigationItems = [
@@ -15,10 +16,47 @@ type HeroHeaderProps = {
 };
 
 export function HeroHeader({ onNavigate }: HeroHeaderProps) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    const onResize = () => {
+      if (window.innerWidth > 980) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileMenuOpen]);
+
   const handleAnchorClick = (
     event: React.MouseEvent<HTMLAnchorElement>,
     href: string,
   ) => {
+    setMobileMenuOpen(false);
+
     if (onNavigate && onNavigate(href)) {
       event.preventDefault();
       return;
@@ -55,7 +93,32 @@ export function HeroHeader({ onNavigate }: HeroHeaderProps) {
       </a>
 
       <div className={styles.navCluster}>
-        <nav aria-label="Primary navigation" className={styles.nav}>
+        <button
+          type="button"
+          className={`${styles.menuToggle} ${mobileMenuOpen ? styles.menuToggleOpen : ""}`}
+          aria-label={mobileMenuOpen ? "Zamknij menu" : "Otworz menu"}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-primary-nav"
+          onClick={() => setMobileMenuOpen((prev) => !prev)}
+        >
+          <span className={styles.menuBar} />
+          <span className={styles.menuBar} />
+          <span className={styles.menuBar} />
+        </button>
+
+        <button
+          type="button"
+          className={`${styles.menuBackdrop} ${mobileMenuOpen ? styles.menuBackdropVisible : ""}`}
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden={!mobileMenuOpen}
+          tabIndex={mobileMenuOpen ? 0 : -1}
+        />
+
+        <nav
+          id="mobile-primary-nav"
+          aria-label="Primary navigation"
+          className={`${styles.nav} ${mobileMenuOpen ? styles.navOpen : ""}`}
+        >
           {navigationItems.map((item) => (
             <a
               key={item.label}
@@ -66,6 +129,12 @@ export function HeroHeader({ onNavigate }: HeroHeaderProps) {
               {item.label}
             </a>
           ))}
+
+          <div className={styles.drawerFooter}>
+            <p className={styles.drawerQuote}>
+              Kobiecosc to sila, swiatlo i piekno, ktore zaczyna sie od Ciebie.
+            </p>
+          </div>
         </nav>
 
         <a

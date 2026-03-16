@@ -19,6 +19,7 @@ const TRANSITION_DISTANCE_MULTIPLIER = 1.55;
 const AUTO_SCROLL_DURATION_MS = 2100;
 const WHEEL_TRIGGER_DELTA = 100;
 const WHEEL_TRIGGER_GAP_MS = 420;
+const TOUCH_TRIGGER_DELTA_PX = 44;
 
 const clampProgress = (value: number) => Math.max(0, Math.min(2, value));
 const clampUnit = (value: number) => Math.max(0, Math.min(1, value));
@@ -28,6 +29,10 @@ export function LandingStory() {
 
   const progressRafRef = useRef<number | null>(null);
   const scrollRafRef = useRef<number | null>(null);
+  const cinematicViewportRef = useRef<{ width: number; height: number }>({
+    width: 0,
+    height: 0,
+  });
   const lastScrollTopRef = useRef(0);
   const stickyVisibleRef = useRef(true);
 
@@ -38,6 +43,11 @@ export function LandingStory() {
   const wheelAccumulatorRef = useRef(0);
   const lastWheelTimeRef = useRef(0);
   const lastWheelDirectionRef = useRef<0 | 1 | -1>(0);
+  const touchStartYRef = useRef(0);
+  const touchCurrentYRef = useRef(0);
+  const touchDominantDeltaRef = useRef(0);
+  const touchStartProgressRef = useRef(0);
+  const touchActiveRef = useRef(false);
 
   const [transitionProgress, setTransitionProgress] = useState(0);
   const [isStickyVisible, setIsStickyVisible] = useState(true);
@@ -51,16 +61,21 @@ export function LandingStory() {
     setIsStickyVisible(visible);
   }, []);
 
+  const stopAutoScroll = useCallback(() => {
+    if (scrollRafRef.current) {
+      cancelAnimationFrame(scrollRafRef.current);
+      scrollRafRef.current = null;
+    }
+    isAutoScrollingRef.current = false;
+  }, []);
+
   const animateTo = useCallback((targetScrollTop: number, duration = AUTO_SCROLL_DURATION_MS) => {
     const container = storyRef.current;
     if (!container) {
       return;
     }
 
-    if (scrollRafRef.current) {
-      cancelAnimationFrame(scrollRafRef.current);
-      scrollRafRef.current = null;
-    }
+    stopAutoScroll();
 
     const start = container.scrollTop;
     const distance = targetScrollTop - start;
@@ -90,7 +105,48 @@ export function LandingStory() {
     };
 
     scrollRafRef.current = requestAnimationFrame(step);
+  }, [stopAutoScroll]);
+
+  const getStableViewportHeight = useCallback((container: HTMLElement) => {
+    const measuredHeight = container.clientHeight || window.innerHeight || 1;
+    const measuredWidth = window.innerWidth || 0;
+    const previous = cinematicViewportRef.current;
+
+    if (!previous.height) {
+      cinematicViewportRef.current = {
+        width: measuredWidth,
+        height: measuredHeight,
+      };
+      return measuredHeight;
+    }
+
+    const heightDiff = Math.abs(measuredHeight - previous.height);
+    const widthDiff = Math.abs(measuredWidth - previous.width);
+
+    // Ignore tiny mobile viewport shifts (browser bars) to prevent false jump triggers.
+    if (heightDiff > 160 || widthDiff > 120) {
+      cinematicViewportRef.current = {
+        width: measuredWidth,
+        height: measuredHeight,
+      };
+      return measuredHeight;
+    }
+
+    return previous.height;
   }, []);
+
+  const getCinematicMetrics = useCallback((container: HTMLElement) => {
+    const viewport = getStableViewportHeight(container);
+    const transitionDistance = viewport * TRANSITION_DISTANCE_MULTIPLIER;
+    const cinematicMaxScrollTop = transitionDistance * 2;
+    const progress = clampProgress(container.scrollTop / transitionDistance);
+
+    return {
+      transitionDistance,
+      cinematicMaxScrollTop,
+      progress,
+    };
+  }, [getStableViewportHeight]);
 
   useEffect(() => {
     const container = storyRef.current;
@@ -99,7 +155,7 @@ export function LandingStory() {
     }
 
     const updateTargetProgress = () => {
-      const viewport = container.clientHeight || window.innerHeight || 1;
+      const viewport = getStableViewportHeight(container);
       const transitionDistance = viewport * TRANSITION_DISTANCE_MULTIPLIER;
       const scrollTop = container.scrollTop;
       const nextProgress = clampProgress(scrollTop / transitionDistance);
@@ -144,7 +200,7 @@ export function LandingStory() {
         cancelAnimationFrame(progressRafRef.current);
       }
     };
-  }, [updateStickyVisible]);
+  }, [getStableViewportHeight, updateStickyVisible]);
 
   useEffect(() => {
     const container = storyRef.current;
@@ -154,7 +210,7 @@ export function LandingStory() {
 
     const onWheel = (event: WheelEvent) => {
       if (isAutoScrollingRef.current) {
-        return;
+        stopAutoScroll();
       }
 
       const delta = event.deltaY;
@@ -176,13 +232,11 @@ export function LandingStory() {
       lastWheelTimeRef.current = now;
       wheelAccumulatorRef.current += Math.abs(delta);
 
-      const viewport = container.clientHeight || window.innerHeight || 1;
-      const transitionDistance = viewport * TRANSITION_DISTANCE_MULTIPLIER;
-      const cinematicMaxScrollTop = transitionDistance * 2;
+      const { transitionDistance, cinematicMaxScrollTop, progress } =
+        getCinematicMetrics(container);
       if (container.scrollTop > cinematicMaxScrollTop + 2) {
         return;
       }
-      const progress = clampProgress(container.scrollTop / transitionDistance);
 
       if (wheelAccumulatorRef.current < WHEEL_TRIGGER_DELTA) {
         return;
@@ -206,15 +260,115 @@ export function LandingStory() {
     return () => {
       container.removeEventListener("wheel", onWheel);
     };
-  }, [animateTo]);
+  }, [animateTo, getCinematicMetrics, stopAutoScroll]);
+
+  useEffect(() => {
+    const container = storyRef.current;
+    if (!container) {
+      return;
+    }
+
+    const triggerTouchStep = (direction: 1 | -1, baseProgress?: number) => {
+      const { transitionDistance, progress: currentProgress } =
+        getCinematicMetrics(container);
+      const progress = baseProgress ?? currentProgress;
+
+      if (direction > 0 && progress < 2) {
+        const targetStep = Math.min(2, Math.floor(progress + 0.0001) + 1);
+        animateTo(targetStep * transitionDistance, AUTO_SCROLL_DURATION_MS);
+        return true;
+      }
+
+      if (direction < 0 && progress > 0) {
+        const targetStep = Math.max(0, Math.ceil(progress - 0.0001) - 1);
+        animateTo(targetStep * transitionDistance, AUTO_SCROLL_DURATION_MS);
+        return true;
+      }
+
+      return false;
+    };
+
+    const onTouchStart = (event: TouchEvent) => {
+      if (event.touches.length !== 1) {
+        touchActiveRef.current = false;
+        return;
+      }
+
+      // Keep cinematic auto-scroll deterministic on mobile; don't interrupt mid-flight.
+      if (isAutoScrollingRef.current) {
+        touchActiveRef.current = false;
+        return;
+      }
+
+      const { cinematicMaxScrollTop, progress } = getCinematicMetrics(container);
+      if (container.scrollTop >= cinematicMaxScrollTop - 2 || progress >= 1.99) {
+        touchActiveRef.current = false;
+        return;
+      }
+
+      const touchY = event.touches[0]?.clientY ?? 0;
+      touchStartYRef.current = touchY;
+      touchCurrentYRef.current = touchY;
+      touchDominantDeltaRef.current = 0;
+      touchStartProgressRef.current = progress;
+      touchActiveRef.current = true;
+    };
+
+    const onTouchMove = (event: TouchEvent) => {
+      if (!touchActiveRef.current || event.touches.length !== 1) {
+        if (isAutoScrollingRef.current) {
+          event.preventDefault();
+        }
+        return;
+      }
+
+      const touchY = event.touches[0]?.clientY ?? touchCurrentYRef.current;
+      touchCurrentYRef.current = touchY;
+      const delta = touchStartYRef.current - touchY;
+      if (Math.abs(delta) > Math.abs(touchDominantDeltaRef.current)) {
+        touchDominantDeltaRef.current = delta;
+      }
+
+      // Blocks native momentum scroll in cinematic part; we drive transitions manually.
+      event.preventDefault();
+    };
+
+    const onTouchEnd = () => {
+      if (touchActiveRef.current) {
+        const endDelta = touchStartYRef.current - touchCurrentYRef.current;
+        const dominantDelta =
+          Math.abs(touchDominantDeltaRef.current) >= Math.abs(endDelta)
+            ? touchDominantDeltaRef.current
+            : endDelta;
+
+        if (Math.abs(dominantDelta) >= TOUCH_TRIGGER_DELTA_PX) {
+          const direction: 1 | -1 = dominantDelta > 0 ? 1 : -1;
+          triggerTouchStep(direction, touchStartProgressRef.current);
+        }
+      }
+
+      touchActiveRef.current = false;
+      touchDominantDeltaRef.current = 0;
+    };
+
+    container.addEventListener("touchstart", onTouchStart, { passive: true });
+    container.addEventListener("touchmove", onTouchMove, { passive: false });
+    container.addEventListener("touchend", onTouchEnd, { passive: true });
+    container.addEventListener("touchcancel", onTouchEnd, { passive: true });
+
+    return () => {
+      container.removeEventListener("touchstart", onTouchStart);
+      container.removeEventListener("touchmove", onTouchMove);
+      container.removeEventListener("touchend", onTouchEnd);
+      container.removeEventListener("touchcancel", onTouchEnd);
+    };
+  }, [animateTo, getCinematicMetrics]);
 
   useEffect(() => {
     return () => {
-      if (scrollRafRef.current) {
-        cancelAnimationFrame(scrollRafRef.current);
-      }
+      stopAutoScroll();
     };
-  }, []);
+  }, [stopAutoScroll]);
 
   const handleScrollNext = useCallback(() => {
     const container = storyRef.current;
@@ -222,11 +376,11 @@ export function LandingStory() {
       return;
     }
 
-    const viewport = container.clientHeight || window.innerHeight || 1;
+    const viewport = getStableViewportHeight(container);
     const transitionDistance = viewport * TRANSITION_DISTANCE_MULTIPLIER;
 
     animateTo(transitionDistance, 2400);
-  }, [animateTo]);
+  }, [animateTo, getStableViewportHeight]);
 
   const handleNavigate = useCallback(
     (href: string) => {
@@ -236,12 +390,10 @@ export function LandingStory() {
       }
 
       if (scrollRafRef.current) {
-        cancelAnimationFrame(scrollRafRef.current);
-        scrollRafRef.current = null;
-        isAutoScrollingRef.current = false;
+        stopAutoScroll();
       }
 
-      const viewport = container.clientHeight || window.innerHeight || 1;
+      const viewport = getStableViewportHeight(container);
       const transitionDistance = viewport * TRANSITION_DISTANCE_MULTIPLIER;
 
       if (href === "#home") {
@@ -269,7 +421,7 @@ export function LandingStory() {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
       return true;
     },
-    [animateTo],
+    [animateTo, getStableViewportHeight, stopAutoScroll],
   );
 
   const heroLayerOpacity = transitionProgress <= 1 ? 1 : 0;
