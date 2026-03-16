@@ -84,7 +84,7 @@ export function AboutMeIntro({
                 style={{
                   opacity: reveal * (1 - exit * 0.14),
                   clipPath: `inset(0 ${100 - reveal * 100}% 0 0)`,
-                  transform: `translateY(${-112 * exit}dvh)`,
+                  transform: `translateY(${-112 * exit}svh)`,
                 }}
               >
                 <motion.div

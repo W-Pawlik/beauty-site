@@ -1,7 +1,7 @@
 ﻿.section {
   position: relative;
   width: 100%;
-  min-height: 100dvh;
+  min-height: 100svh;
   padding: clamp(70px, 10vw, 118px) 0 clamp(88px, 12vw, 136px);
   overflow: hidden;
   background: linear-gradient(180deg, #fffefc 0%, #fff8fc 60%, #fff4fb 100%);
@@ -18,7 +18,7 @@
   width: clamp(200px, 30vw, 460px);
   aspect-ratio: 1;
   left: clamp(-120px, -5vw, -40px);
-  top: clamp(30px, 8vh, 100px);
+  top: clamp(30px, 8svh, 100px);
   background: rgba(228, 173, 202, 0.24);
 }
 
@@ -26,7 +26,7 @@
   width: clamp(180px, 24vw, 360px);
   aspect-ratio: 1;
   right: clamp(-80px, 3vw, 60px);
-  bottom: clamp(30px, 6vh, 110px);
+  bottom: clamp(30px, 6svh, 110px);
   background: rgba(234, 222, 217, 0.86);
 }
 

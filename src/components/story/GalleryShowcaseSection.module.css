@@ -141,7 +141,7 @@
 .modalImageWrap {
   position: relative;
   width: 100%;
-  height: clamp(280px, 62vh, 560px);
+  height: clamp(280px, 62svh, 560px);
   background: #fff;
   overflow: hidden;
 }
@@ -221,6 +221,6 @@
   }
 
   .modalImageWrap {
-    height: clamp(220px, 46vh, 360px);
+    height: clamp(220px, 46svh, 360px);
   }
 }

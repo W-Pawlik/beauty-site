@@ -19,7 +19,8 @@ const TRANSITION_DISTANCE_MULTIPLIER = 1.55;
 const AUTO_SCROLL_DURATION_MS = 2100;
 const WHEEL_TRIGGER_DELTA = 100;
 const WHEEL_TRIGGER_GAP_MS = 420;
-const TOUCH_TRIGGER_DELTA_PX = 44;
+const TOUCH_TRIGGER_DELTA_PX = 56;
+const TOUCH_TRIGGER_GAP_MS = 720;
 
 const clampProgress = (value: number) => Math.max(0, Math.min(2, value));
 const clampUnit = (value: number) => Math.max(0, Math.min(1, value));
@@ -34,6 +35,7 @@ export function LandingStory() {
     height: 0,
   });
   const lastScrollTopRef = useRef(0);
+  const headerDirectionDeltaRef = useRef(0);
   const stickyVisibleRef = useRef(true);
 
   const targetProgressRef = useRef(0);
@@ -48,6 +50,7 @@ export function LandingStory() {
   const touchDominantDeltaRef = useRef(0);
   const touchStartProgressRef = useRef(0);
   const touchActiveRef = useRef(false);
+  const lastTouchStepTimeRef = useRef(0);
 
   const [transitionProgress, setTransitionProgress] = useState(0);
   const [isStickyVisible, setIsStickyVisible] = useState(true);
@@ -162,13 +165,43 @@ export function LandingStory() {
       targetProgressRef.current = nextProgress;
 
       const delta = scrollTop - lastScrollTopRef.current;
+      const isMobileViewport = (window.innerWidth || container.clientWidth) <= 980;
       if (nextProgress >= 1) {
-        if (delta > 1.2) {
-          updateStickyVisible(false);
-        } else if (delta < -1.2) {
+        // On mobile keep sticky header stable to avoid viewport jump glitches.
+        if (isMobileViewport) {
+          headerDirectionDeltaRef.current = 0;
           updateStickyVisible(true);
+          lastScrollTopRef.current = scrollTop;
+          return;
+        }
+
+        const limitedDelta = Math.max(-44, Math.min(44, delta));
+        const accumulator = headerDirectionDeltaRef.current;
+        const isDirectionChanged =
+          accumulator !== 0 &&
+          ((limitedDelta > 0 && accumulator < 0) ||
+            (limitedDelta < 0 && accumulator > 0));
+
+        if (isDirectionChanged) {
+          headerDirectionDeltaRef.current = 0;
+        }
+
+        headerDirectionDeltaRef.current += limitedDelta;
+
+        // Hysteresis prevents jitter: hide after a clearer downward intent,
+        // show earlier on upward intent.
+        if (stickyVisibleRef.current && headerDirectionDeltaRef.current > 54) {
+          updateStickyVisible(false);
+          headerDirectionDeltaRef.current = 0;
+        } else if (
+          !stickyVisibleRef.current &&
+          headerDirectionDeltaRef.current < -24
+        ) {
+          updateStickyVisible(true);
+          headerDirectionDeltaRef.current = 0;
         }
       } else {
+        headerDirectionDeltaRef.current = 0;
         updateStickyVisible(true);
       }
 
@@ -333,34 +366,54 @@ export function LandingStory() {
       event.preventDefault();
     };
 
-    const onTouchEnd = () => {
-      if (touchActiveRef.current) {
-        const endDelta = touchStartYRef.current - touchCurrentYRef.current;
-        const dominantDelta =
-          Math.abs(touchDominantDeltaRef.current) >= Math.abs(endDelta)
-            ? touchDominantDeltaRef.current
-            : endDelta;
+    const resetTouchState = () => {
+      touchActiveRef.current = false;
+      touchDominantDeltaRef.current = 0;
+    };
 
-        if (Math.abs(dominantDelta) >= TOUCH_TRIGGER_DELTA_PX) {
-          const direction: 1 | -1 = dominantDelta > 0 ? 1 : -1;
-          triggerTouchStep(direction, touchStartProgressRef.current);
+    const onTouchEnd = () => {
+      if (!touchActiveRef.current || isAutoScrollingRef.current) {
+        resetTouchState();
+        return;
+      }
+
+      const now = performance.now();
+      if (now - lastTouchStepTimeRef.current < TOUCH_TRIGGER_GAP_MS) {
+        resetTouchState();
+        return;
+      }
+
+      const endDelta = touchStartYRef.current - touchCurrentYRef.current;
+      const dominantDelta =
+        Math.abs(touchDominantDeltaRef.current) >= Math.abs(endDelta)
+          ? touchDominantDeltaRef.current
+          : endDelta;
+
+      if (Math.abs(dominantDelta) >= TOUCH_TRIGGER_DELTA_PX) {
+        const direction: 1 | -1 = dominantDelta > 0 ? 1 : -1;
+        const transitioned = triggerTouchStep(direction, touchStartProgressRef.current);
+        if (transitioned) {
+          lastTouchStepTimeRef.current = now;
         }
       }
 
-      touchActiveRef.current = false;
-      touchDominantDeltaRef.current = 0;
+      resetTouchState();
+    };
+
+    const onTouchCancel = () => {
+      resetTouchState();
     };
 
     container.addEventListener("touchstart", onTouchStart, { passive: true });
     container.addEventListener("touchmove", onTouchMove, { passive: false });
     container.addEventListener("touchend", onTouchEnd, { passive: true });
-    container.addEventListener("touchcancel", onTouchEnd, { passive: true });
+    container.addEventListener("touchcancel", onTouchCancel, { passive: true });
 
     return () => {
       container.removeEventListener("touchstart", onTouchStart);
       container.removeEventListener("touchmove", onTouchMove);
       container.removeEventListener("touchend", onTouchEnd);
-      container.removeEventListener("touchcancel", onTouchEnd);
+      container.removeEventListener("touchcancel", onTouchCancel);
     };
   }, [animateTo, getCinematicMetrics]);
 
@@ -437,7 +490,6 @@ export function LandingStory() {
         style={{
           opacity: stickyHeaderVisibility,
           pointerEvents: stickyHeaderVisibility > 0.02 ? "auto" : "none",
-          top: `${(1 - stickyHeaderVisibility) * -18}px`,
         }}
       >
         <div className={styles.stickyHeaderInner}>

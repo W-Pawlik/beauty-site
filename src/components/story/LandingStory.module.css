@@ -2,6 +2,7 @@
   height: 100svh;
   overflow-y: auto;
   overflow-x: hidden;
+  overflow-anchor: none;
   scroll-behavior: auto;
   overscroll-behavior-y: none;
   scrollbar-width: thin;
@@ -28,10 +29,8 @@
   left: 0;
   right: 0;
   z-index: 48;
-  will-change: top, opacity;
-  transition:
-    opacity 0.28s ease,
-    top 0.28s ease;
+  will-change: opacity;
+  transition: opacity 0.28s ease;
 }
 
 .stickyHeaderInner {

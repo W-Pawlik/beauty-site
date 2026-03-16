@@ -39,14 +39,14 @@
   width: clamp(230px, 28vw, 410px);
   aspect-ratio: 1;
   left: clamp(8px, 8vw, 140px);
-  top: clamp(198px, 36vh, 320px);
+  top: clamp(198px, 36svh, 320px);
   background: rgba(234, 222, 217, 0.9);
 }
 
 .softCircleTop {
   width: clamp(210px, 24vw, 340px);
   aspect-ratio: 1;
-  top: clamp(68px, 14vh, 150px);
+  top: clamp(68px, 14svh, 150px);
   left: clamp(286px, 42vw, 560px);
   background: rgba(231, 219, 214, 0.82);
 }
@@ -102,21 +102,21 @@
 }
 
 .badgeTopLeft {
-  top: clamp(84px, 14vh, 128px);
+  top: clamp(84px, 14svh, 128px);
   left: clamp(160px, 24vw, 334px);
   width: clamp(128px, 14vw, 176px);
   height: clamp(58px, 5.4vw, 70px);
 }
 
 .badgeLeftBottom {
-  top: clamp(266px, 58vh, 432px);
+  top: clamp(266px, 58svh, 432px);
   left: clamp(42px, 8vw, 100px);
   width: clamp(136px, 16.2vw, 206px);
   height: clamp(58px, 5.4vw, 70px);
 }
 
 .badgeRightTop {
-  top: clamp(118px, 23vh, 182px);
+  top: clamp(118px, 23svh, 182px);
   right: clamp(36px, 8vw, 102px);
   width: clamp(136px, 16.2vw, 206px);
   height: clamp(58px, 5.4vw, 70px);
@@ -125,7 +125,7 @@
 .portraitRing {
   position: absolute;
   left: clamp(196px, 33vw, 476px);
-  top: clamp(152px, 30vh, 252px);
+  top: clamp(152px, 30svh, 252px);
   width: clamp(154px, 17vw, 218px);
   aspect-ratio: 1;
   border-radius: 50%;
@@ -152,7 +152,7 @@
   position: absolute;
   left: 50%;
   width: min(74vw, 980px);
-  top: clamp(276px, 56vh, 428px);
+  top: clamp(276px, 56svh, 428px);
   transform: translateX(-50%);
   z-index: 12;
   background: #ffffff;
@@ -193,7 +193,7 @@
   .softCircleLeft {
     width: 52vw;
     left: -8vw;
-    top: 33vh;
+    top: 33svh;
   }
 
   .softCircleTop {
@@ -235,7 +235,7 @@
     left: 20px;
     right: 20px;
     width: auto;
-    top: clamp(258px, 44vh, 320px);
+    top: clamp(258px, 44svh, 320px);
     transform: none;
     padding: 14px 16px 16px;
   }

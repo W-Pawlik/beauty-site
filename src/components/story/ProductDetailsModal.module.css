@@ -12,7 +12,7 @@
 .modal {
   position: relative;
   width: min(1060px, calc(100vw - 72px));
-  max-height: min(84dvh, 860px);
+  max-height: min(84svh, 860px);
   border: 1px solid rgba(73, 65, 63, 0.14);
   border-radius: 22px;
   background:
@@ -262,7 +262,7 @@
 
   .modal {
     width: min(920px, calc(100vw - 32px));
-    max-height: 82dvh;
+    max-height: 82svh;
     border-radius: 18px;
   }
 
