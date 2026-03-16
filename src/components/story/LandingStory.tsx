@@ -167,14 +167,6 @@ export function LandingStory() {
       const delta = scrollTop - lastScrollTopRef.current;
       const isMobileViewport = (window.innerWidth || container.clientWidth) <= 980;
       if (nextProgress >= 1) {
-        // On mobile keep sticky header stable to avoid viewport jump glitches.
-        if (isMobileViewport) {
-          headerDirectionDeltaRef.current = 0;
-          updateStickyVisible(true);
-          lastScrollTopRef.current = scrollTop;
-          return;
-        }
-
         const limitedDelta = Math.max(-44, Math.min(44, delta));
         const accumulator = headerDirectionDeltaRef.current;
         const isDirectionChanged =
@@ -187,15 +179,20 @@ export function LandingStory() {
         }
 
         headerDirectionDeltaRef.current += limitedDelta;
+        const hideThreshold = isMobileViewport ? 72 : 54;
+        const showThreshold = isMobileViewport ? -34 : -24;
 
         // Hysteresis prevents jitter: hide after a clearer downward intent,
         // show earlier on upward intent.
-        if (stickyVisibleRef.current && headerDirectionDeltaRef.current > 54) {
+        if (
+          stickyVisibleRef.current &&
+          headerDirectionDeltaRef.current > hideThreshold
+        ) {
           updateStickyVisible(false);
           headerDirectionDeltaRef.current = 0;
         } else if (
           !stickyVisibleRef.current &&
-          headerDirectionDeltaRef.current < -24
+          headerDirectionDeltaRef.current < showThreshold
         ) {
           updateStickyVisible(true);
           headerDirectionDeltaRef.current = 0;
