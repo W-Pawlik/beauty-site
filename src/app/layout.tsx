@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
@@ -23,6 +23,14 @@ export const metadata: Metadata = {
     shortcut: "/images/iconForWebsiteTab.png",
     apple: "/images/iconForWebsiteTab.png",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#eae2d9",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
