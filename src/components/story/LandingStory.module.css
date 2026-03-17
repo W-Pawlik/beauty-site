@@ -42,7 +42,7 @@
 
 .storyTrack {
   position: relative;
-  height: 410svh;
+  height: calc(100svh + (100svh * 2));
 }
 
 .storyViewport {
