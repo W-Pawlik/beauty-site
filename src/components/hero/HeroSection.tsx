@@ -74,7 +74,13 @@ export function HeroSection({
                 >
                   <span className={styles.arrowIcon} aria-hidden="true" />
                 </motion.button>
-                <span className={styles.scrollLabel}>Poznaj mnie</span>
+                <button
+                  type="button"
+                  className={styles.scrollLabelButton}
+                  onClick={onScrollNext}
+                >
+                  Poznaj mnie
+                </button>
               </motion.div>
             </motion.div>
           </motion.div>

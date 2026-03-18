@@ -10,6 +10,7 @@ import { AboutMeSection } from "./AboutMeSection";
 import { AgnieszkaTimelineSection } from "./AgnieszkaTimelineSection";
 import { StatsHorizontalSection } from "./StatsHorizontalSection";
 import { OfferShowcaseSection } from "./OfferShowcaseSection";
+import { JoinTeamSection } from "./JoinTeamSection";
 import { GalleryShowcaseSection } from "./GalleryShowcaseSection";
 import { TestimonialsSection } from "./TestimonialsSection";
 import { ContactParallaxTeaser } from "./ContactParallaxTeaser";
@@ -452,6 +453,7 @@ export function LandingStory() {
       <AgnieszkaTimelineSection />
       <StatsHorizontalSection scrollContainerRef={storyRef} />
       <OfferShowcaseSection />
+      <JoinTeamSection />
       <GalleryShowcaseSection />
       <TestimonialsSection />
       <ContactParallaxTeaser />

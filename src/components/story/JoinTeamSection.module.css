@@ -1,0 +1,701 @@
+﻿.section {
+  position: relative;
+  width: 100%;
+  margin-top: -1px;
+  padding: clamp(72px, 10vw, 120px) 0 clamp(86px, 12vw, 132px);
+  background: #fff;
+}
+
+.container {
+  width: min(1220px, 94vw);
+  margin: 0 auto;
+}
+
+.header {
+  max-width: 860px;
+}
+
+.kicker {
+  margin: 0;
+  color: rgba(73, 65, 63, 0.7);
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(0.7rem, 0.92vw, 0.82rem);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 12px 0 0;
+  color: #49413f;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(2rem, 4.8vw, 4rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 0.97;
+  text-transform: uppercase;
+}
+
+.lead {
+  margin: 16px 0 0;
+  max-width: 76ch;
+  color: rgba(73, 65, 63, 0.82);
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(0.96rem, 1.2vw, 1.08rem);
+  font-weight: 500;
+  line-height: 1.72;
+}
+
+.pillarsGrid {
+  margin-top: clamp(24px, 3vw, 40px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 24px);
+}
+
+.pillarCard {
+  position: relative;
+  min-height: clamp(480px, 48vw, 620px);
+  border: 1px solid rgba(73, 65, 63, 0.12);
+  border-radius: 30px;
+  padding: clamp(16px, 2vw, 22px);
+  overflow: hidden;
+  box-shadow: 0 18px 52px rgba(73, 65, 63, 0.12);
+  isolation: isolate;
+}
+
+.pillarCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 20% 18%,
+      rgba(255, 255, 255, 0.5),
+      transparent 46%
+    ),
+    radial-gradient(
+      circle at 78% 82%,
+      rgba(255, 255, 255, 0.28),
+      transparent 52%
+    );
+  pointer-events: none;
+}
+
+.pillarCardProduct {
+  background: linear-gradient(148deg, #f9ecf4 0%, #fdf7fa 100%);
+}
+
+.pillarCardCooperation {
+  background: linear-gradient(148deg, #f3ecfa 0%, #fbf8fd 100%);
+}
+
+.pillarIndex {
+  position: absolute;
+  top: clamp(20px, 2.2vw, 30px);
+  left: clamp(20px, 2.2vw, 30px);
+  z-index: 5;
+  display: inline-flex;
+  min-width: clamp(58px, 5.2vw, 72px);
+  min-height: clamp(58px, 5.2vw, 72px);
+  border-radius: 999px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(228, 173, 202, 0.5);
+  border: 1px solid rgba(214, 153, 186, 0.55);
+  color: rgba(73, 65, 63, 0.82);
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(1rem, 1.25vw, 1.42rem);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+
+.pillarVisual {
+  position: relative;
+  z-index: 1;
+  margin: clamp(56px, 5.2vw, 76px) clamp(8px, 1vw, 12px) 0;
+  height: clamp(220px, 24vw, 320px);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.pillarVisualImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.pillarVisual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.26) 100%
+  );
+  pointer-events: none;
+}
+
+.pillarContent {
+  position: relative;
+  z-index: 3;
+  margin: clamp(-16px, -1.2vw, -10px) clamp(8px, 1vw, 12px)
+    clamp(8px, 1vw, 12px);
+  padding: clamp(24px, 2.8vw, 38px);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  box-shadow:
+    0 14px 30px rgba(73, 65, 63, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.95) inset;
+  backdrop-filter: blur(4px);
+}
+
+.pillarTitle {
+  margin: 0;
+  color: #49413f;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.6rem, 2.55vw, 2.35rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+}
+
+.pillarText {
+  margin: clamp(12px, 1.5vw, 20px) 0 0;
+  color: rgba(73, 65, 63, 0.84);
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(0.98rem, 1.1vw, 1.12rem);
+  font-weight: 500;
+  line-height: 1.62;
+  max-width: 30ch;
+}
+
+.benefitsBlock {
+  margin-top: clamp(100px, 7vw, 108px);
+  position: relative;
+}
+
+.benefitsKicker {
+  margin: 0;
+  color: rgba(73, 65, 63, 0.68);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.benefitsStackRoot {
+  margin-top: 6px;
+  position: relative;
+}
+
+.benefitStackRow {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.benefitStackCard {
+  position: relative;
+  width: min(1240px, 90vw);
+  min-height: clamp(330px, 48vh, 430px);
+  top: calc(-6svh + var(--stack-offset, 0px));
+  border: 1px solid rgba(230, 188, 211, 0.85);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow:
+    0 22px 52px rgba(73, 65, 63, 0.16),
+    0 1px 0 rgba(255, 255, 255, 0.72) inset;
+  overflow: hidden;
+}
+
+.benefitStackCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(248, 234, 243, 0.95) 0%,
+    rgba(255, 255, 255, 0.94) 40%,
+    rgba(255, 255, 255, 0.52) 56%,
+    rgba(255, 255, 255, 0) 71%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.benefitStackCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.26) 0%,
+    rgba(255, 255, 255, 0) 44%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.benefitStackMedia {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.benefitStackMediaImage {
+  object-fit: cover;
+  object-position: center center;
+}
+
+.benefitStackMedia::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.benefitStackContent {
+  position: relative;
+  z-index: 3;
+  width: min(60%, 820px);
+  padding: clamp(30px, 3.4vw, 48px);
+}
+
+.benefitStackIndex {
+  display: inline-flex;
+  min-width: 82px;
+  min-height: 82px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(248, 234, 243, 0.94);
+  color: rgba(73, 65, 63, 0.72);
+  font-family: var(--font-body), sans-serif;
+  font-size: 1.62rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border: 1px solid rgba(230, 188, 211, 0.75);
+  box-shadow: 0 6px 16px rgba(73, 65, 63, 0.1);
+}
+
+.benefitStackTitle {
+  margin: 28px 0 0;
+  color: #49413f;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.7rem, 2.35vw, 2.32rem);
+  font-weight: 500;
+  line-height: 1.14;
+  letter-spacing: 0.01em;
+}
+
+.benefitStackText {
+  margin: 22px 0 0;
+  color: rgba(73, 65, 63, 0.82);
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(0.98rem, 1.08vw, 1.14rem);
+  font-weight: 500;
+  line-height: 1.62;
+  max-width: 42ch;
+}
+
+.pathCard {
+  margin-top: clamp(30px, 3.4vw, 44px);
+}
+
+.pathHeader {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pathKicker {
+  margin: 0;
+  color: rgba(73, 65, 63, 0.68);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.pathTitle {
+  margin: 10px 0 0;
+  color: #49413f;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+}
+
+.timeline {
+  margin: clamp(22px, 2.8vw, 30px) auto 0;
+  width: min(1080px, 100%);
+}
+
+.timelineRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 88px minmax(0, 1fr);
+  gap: 0;
+  align-items: center;
+}
+
+.segmentRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 88px minmax(0, 1fr);
+  min-height: clamp(72px, 8.4vw, 104px);
+}
+
+.centerCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepPlaceholder {
+  min-height: 1px;
+}
+
+.timelineDot {
+  width: clamp(20px, 2.2vw, 24px);
+  height: clamp(20px, 2.2vw, 24px);
+  border-radius: 999px;
+  border: 4px solid #fff;
+  background: #e4adca;
+  box-shadow:
+    0 0 0 1px rgba(73, 65, 63, 0.18),
+    0 8px 16px rgba(73, 65, 63, 0.16);
+  z-index: 2;
+}
+
+.timelineSegment {
+  width: 3px;
+  height: 100%;
+  border-radius: 999px;
+  transform-origin: top center;
+  background: linear-gradient(
+    180deg,
+    rgba(73, 65, 63, 0.85) 0%,
+    rgba(73, 65, 63, 0.75) 100%
+  );
+}
+
+.stepCard {
+  width: min(450px, 100%);
+}
+
+.stepCardLeft {
+  justify-self: end;
+  padding-right: clamp(12px, 2vw, 28px);
+}
+
+.stepCardRight {
+  justify-self: start;
+  padding-left: clamp(12px, 2vw, 28px);
+}
+
+.stepCardInner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 16px;
+}
+
+.stepNumber {
+  margin-top: -4px;
+  color: #e4adca;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(2.8rem, 4vw, 4.3rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+}
+
+.stepHeading {
+  margin: 0;
+  color: #49413f;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.2rem, 1.65vw, 1.7rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.stepText {
+  margin: 8px 0 0;
+  color: rgba(73, 65, 63, 0.84);
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(0.92rem, 1.05vw, 1rem);
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.timelineCtaRow {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.pathCta {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  border: 1px solid rgba(228, 173, 202, 0.95);
+  border-radius: 8px;
+  background: #e4adca;
+  color: #49413f;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0 16px;
+  text-decoration: none;
+  transition:
+    transform 0.24s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.pathCta::before {
+  content: "";
+  position: absolute;
+  inset: -32%;
+  background: linear-gradient(
+    90deg,
+    rgba(245, 210, 228, 0.34) 0%,
+    rgba(255, 241, 249, 0.72) 48%,
+    rgba(233, 183, 210, 0.3) 100%
+  );
+  opacity: 0.78;
+  filter: blur(10px);
+  transform: translateX(-14%);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+.pathCta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0) 42%
+  );
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.ctaLabel {
+  position: relative;
+  z-index: 1;
+}
+
+.pathCta:hover {
+  transform: translateY(-2px);
+  border-color: rgba(228, 173, 202, 0.98);
+  box-shadow: 0 10px 20px rgba(73, 65, 63, 0.14);
+}
+
+.pathCta:hover::before {
+  opacity: 0.92;
+  transform: translateX(12%);
+}
+
+@media (max-width: 1100px) {
+  .benefitStackCard {
+    width: min(980px, 90vw);
+    min-height: clamp(300px, 42vh, 390px);
+  }
+
+  .benefitStackContent {
+    width: min(64%, 700px);
+    padding: 28px;
+  }
+
+  .benefitStackTitle {
+    font-size: clamp(1.5rem, 2.5vw, 1.95rem);
+  }
+
+  .benefitStackText {
+    font-size: clamp(0.94rem, 1.02vw, 1.02rem);
+  }
+}
+
+@media (max-width: 980px) {
+  .container {
+    width: min(1220px, calc(100% - 40px));
+  }
+
+  .pillarsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pillarCard {
+    min-height: clamp(460px, 72vw, 580px);
+  }
+
+  .pillarVisual {
+    height: clamp(220px, 40vw, 300px);
+  }
+
+  .pillarTitle {
+    font-size: clamp(1.5rem, 4.8vw, 2.05rem);
+  }
+
+  .pillarText {
+    font-size: clamp(0.95rem, 2.45vw, 1.04rem);
+    max-width: 40ch;
+  }
+
+  .benefitStackCard {
+    width: 100%;
+    min-height: clamp(230px, 34vh, 300px);
+  }
+
+  .benefitStackContent {
+    width: min(72%, 100%);
+    padding: 20px;
+  }
+
+  .timelineRow,
+  .segmentRow {
+    grid-template-columns: 36px minmax(0, 1fr);
+    column-gap: 12px;
+  }
+
+  .stepCard,
+  .stepCardLeft,
+  .stepCardRight {
+    width: 100%;
+    justify-self: stretch;
+    padding: 0;
+    grid-column: 2;
+  }
+
+  .stepPlaceholder {
+    display: none;
+  }
+
+  .centerCell {
+    grid-column: 1;
+  }
+
+  .stepCardInner {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 760px) {
+  .pillarCard {
+    border-radius: 24px;
+    padding: 12px;
+    min-height: auto;
+  }
+
+  .pillarIndex {
+    top: 16px;
+    left: 16px;
+    min-width: 54px;
+    min-height: 54px;
+    font-size: 0.95rem;
+  }
+
+  .pillarVisual {
+    margin: 48px 4px 0;
+    height: clamp(190px, 49vw, 260px);
+    border-radius: 18px;
+  }
+
+  .pillarContent {
+    margin: -12px 4px 4px;
+    padding: 20px 18px 22px;
+    border-radius: 18px;
+  }
+
+  .pillarTitle {
+    font-size: clamp(1.4rem, 7vw, 1.85rem);
+  }
+
+  .pillarText {
+    margin-top: 10px;
+    font-size: clamp(0.95rem, 4.2vw, 1.02rem);
+    line-height: 1.58;
+    max-width: none;
+  }
+
+  .benefitsStackRoot {
+    display: grid;
+    gap: 12px;
+  }
+
+  .benefitStackRow {
+    position: relative;
+    top: auto;
+    height: auto;
+    display: block;
+  }
+
+  .benefitStackCard {
+    position: relative;
+    top: 0;
+    border-radius: 14px;
+    min-height: auto;
+    transform: none !important;
+  }
+
+  .benefitStackContent {
+    width: min(86%, 100%);
+    padding: 16px;
+  }
+
+  .benefitStackIndex {
+    min-width: 56px;
+    min-height: 56px;
+    font-size: 1.3rem;
+  }
+
+  .benefitStackTitle {
+    margin-top: 12px;
+    font-size: 1.38rem;
+  }
+
+  .benefitStackText {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    line-height: 1.56;
+  }
+
+  .pathTitle {
+    font-size: clamp(1.24rem, 6.2vw, 1.6rem);
+  }
+
+  .timeline {
+    margin-top: 20px;
+  }
+
+  .pathCta {
+    width: 100%;
+  }
+
+  .timelineCtaRow {
+    justify-content: stretch;
+  }
+}
