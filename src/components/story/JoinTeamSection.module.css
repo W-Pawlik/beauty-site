@@ -577,8 +577,9 @@
 
   .timelineRow,
   .segmentRow {
-    grid-template-columns: 36px minmax(0, 1fr);
-    column-gap: 12px;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 0;
+    position: relative;
   }
 
   .stepCard,
@@ -586,8 +587,8 @@
   .stepCardRight {
     width: 100%;
     justify-self: stretch;
-    padding: 0;
-    grid-column: 2;
+    padding: 0 0 0 34px;
+    grid-column: 1;
   }
 
   .stepPlaceholder {
@@ -595,7 +596,26 @@
   }
 
   .centerCell {
-    grid-column: 1;
+    position: absolute;
+    left: 2px;
+    top: 4px;
+    width: 24px;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .segmentRow .centerCell {
+    left: 12px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    align-items: stretch;
+  }
+
+  .segmentRow .timelineSegment {
+    width: 3px;
+    height: 100%;
   }
 
   .stepCardInner {
@@ -642,34 +662,34 @@
   }
 
   .benefitsStackRoot {
-    display: grid;
-    gap: 12px;
+    margin-top: 8px;
   }
 
   .benefitStackRow {
-    position: relative;
-    top: auto;
-    height: auto;
-    display: block;
+    position: sticky;
+    top: clamp(78px, 12svh, 96px);
+    height: calc(100svh - clamp(78px, 12svh, 96px));
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .benefitStackCard {
-    position: relative;
-    top: 0;
-    border-radius: 14px;
-    min-height: auto;
-    transform: none !important;
+    width: 100%;
+    top: calc(-2svh + var(--stack-offset, 0px));
+    border-radius: 18px;
+    min-height: clamp(250px, 48svh, 360px);
   }
 
   .benefitStackContent {
-    width: min(86%, 100%);
+    width: min(84%, 100%);
     padding: 16px;
   }
 
   .benefitStackIndex {
     min-width: 56px;
     min-height: 56px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 
   .benefitStackTitle {
@@ -681,6 +701,23 @@
     margin-top: 8px;
     font-size: 0.95rem;
     line-height: 1.56;
+  }
+
+  .timelineRow {
+    margin-bottom: 6px;
+  }
+
+  .segmentRow {
+    min-height: 42px;
+  }
+
+  .centerCell {
+    left: 4px;
+    top: 2px;
+  }
+
+  .segmentRow .centerCell {
+    left: 14px;
   }
 
   .pathTitle {
