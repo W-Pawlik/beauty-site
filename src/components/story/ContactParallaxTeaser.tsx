@@ -1,5 +1,6 @@
 ﻿"use client";
 
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import styles from "./ContactParallaxTeaser.module.css";
@@ -35,7 +36,16 @@ export function ContactParallaxTeaser() {
         <motion.div
           className={styles.imageLayer}
           style={{ y: imageY, scale: imageScale }}
-        />
+        >
+          <Image
+            src="/images/woman_talking_on_the_phone_closeup.webp"
+            alt=""
+            aria-hidden="true"
+            fill
+            sizes="100vw"
+            className={styles.image}
+          />
+        </motion.div>
         <motion.div
           className={styles.overlay}
           style={{ opacity: overlayOpacity }}

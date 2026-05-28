@@ -46,9 +46,10 @@ export function AboutMeSection({ transitionProgress = 0 }: AboutMeSectionProps) 
         <div className={styles.portraitRing}>
           <div className={styles.portrait}>
             <Image
-              src="/images/section2_1.avif"
+              src="/images/AgnieszkaLImages/IMG_5141.jpeg"
               alt="Agnieszka Luzarska"
               fill
+              quality={100}
               sizes="(max-width: 980px) 38vw, 220px"
               className={styles.portraitImage}
             />

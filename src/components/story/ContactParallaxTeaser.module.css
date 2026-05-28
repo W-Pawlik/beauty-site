@@ -13,10 +13,12 @@
 .imageLayer {
   position: absolute;
   inset: -22% 0;
-  background-image: url("/images/woman_talking_on_the_phone_closeup.webp");
-  background-size: cover;
-  background-position: center 42%;
   will-change: transform;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center 42%;
 }
 
 .overlay {

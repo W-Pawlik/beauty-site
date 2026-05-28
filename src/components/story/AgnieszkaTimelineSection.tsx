@@ -40,11 +40,11 @@ const timelineData: TimelineEntry[] = [
         </p>
         <div className="grid grid-cols-2 gap-4">
           <TimelineRevealImage
-            src="/images/section2_1.avif"
+            src="/images/AgnieszkaLImages/optimized/IMG_5410.jpeg"
             alt="Poczatki konsultacji beauty"
           />
           <TimelineRevealImage
-            src="/images/herosectionimg.jpg"
+            src="/images/AgnieszkaLImages/optimized/IMG_5141.jpeg"
             alt="Pierwsze szkolenia"
           />
         </div>
@@ -73,11 +73,11 @@ const timelineData: TimelineEntry[] = [
         </div>
         <div className="grid grid-cols-2 gap-4">
           <TimelineRevealImage
-            src="/images/section2_2.avif"
+            src="/images/AgnieszkaLImages/optimized/IMG_5411.jpeg"
             alt="Rozwoj zespolu konsultantek"
           />
           <TimelineRevealImage
-            src="/images/section2_3.avif"
+            src="/images/AgnieszkaLImages/optimized/IMG_5412.jpeg"
             alt="Warsztaty beauty"
           />
         </div>
@@ -95,11 +95,11 @@ const timelineData: TimelineEntry[] = [
         </p>
         <div className="grid grid-cols-2 gap-4">
           <TimelineRevealImage
-            src="/images/herosectionImg2.avif"
+            src="/images/AgnieszkaLImages/optimized/IMG_7649.jpeg"
             alt="Mentoring i szkolenia"
           />
           <TimelineRevealImage
-            src="/images/section2_1.avif"
+            src="/images/AgnieszkaLImages/optimized/IMG_5410.jpeg"
             alt="Autorskie metody konsultacji"
           />
         </div>
@@ -117,11 +117,11 @@ const timelineData: TimelineEntry[] = [
         </p>
         <div className="grid grid-cols-2 gap-4">
           <TimelineRevealImage
-            src="/images/herosectionimg.jpg"
+            src="/images/AgnieszkaLImages/optimized/IMG_5141.jpeg"
             alt="Nowoczesne konsultacje online"
           />
           <TimelineRevealImage
-            src="/images/section2_2.avif"
+            src="/images/AgnieszkaLImages/optimized/IMG_5411.jpeg"
             alt="Aktualny etap rozwoju marki osobistej"
           />
         </div>

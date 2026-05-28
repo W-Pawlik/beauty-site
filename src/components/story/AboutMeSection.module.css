@@ -140,12 +140,13 @@
   height: 100%;
   border-radius: 50%;
   overflow: hidden;
+  background: #f2eff0;
 }
 
 .portraitImage {
   object-fit: cover;
-  object-position: center 32%;
-  filter: contrast(1.02) saturate(0.92) brightness(0.98);
+  object-position: center 18%;
+  filter: brightness(1.08) contrast(1.02);
 }
 
 .aboutBlock {

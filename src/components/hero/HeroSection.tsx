@@ -96,8 +96,8 @@ export function HeroSection({
             transition={{ duration: 1.05, ease: "easeOut", delay: 0.15 }}
           >
             <Image
-              src="/images/herosectionImg2.avif"
-              alt="Modelka z zestawem pedzli do makijazu"
+              src="/images/AgnieszkaLImages/heroSectionImageLandscape.png"
+              alt="Agnieszka Luzarska"
               fill
               priority
               sizes="(max-width: 900px) 100vw, 56vw"

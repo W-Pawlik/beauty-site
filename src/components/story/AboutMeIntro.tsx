@@ -12,19 +12,19 @@ const clamp = (value: number) => Math.max(0, Math.min(1, value));
 
 const panelItems = [
   {
-    image: "/images/section2_1.avif",
+    image: "/images/AgnieszkaLImages/optimized/IMG_5410.jpeg",
     title: "Lata doswiadczenia w branzy beauty",
     alt: "Lata doswiadczenia",
     imageClassName: "panelImageLeft",
   },
   {
-    image: "/images/section2_2.avif",
+    image: "/images/AgnieszkaLImages/optimized/IMG_5411.jpeg",
     title: "Profesjonalne podejscie",
     alt: "Profesjonalne podejscie",
     imageClassName: "panelImageCenter",
   },
   {
-    image: "/images/section2_3.avif",
+    image: "/images/AgnieszkaLImages/optimized/IMG_5412.jpeg",
     title: "Kosmetyki to pasja, ktora chce sie dzielic",
     alt: "Pasja do kosmetykow",
     imageClassName: "panelImageRight",
@@ -43,11 +43,6 @@ export function AboutMeIntro({
   const getPanelReveal = (index: number) => {
     const delay = index * 0.18;
     return clamp((introProgress - delay) / 0.62);
-  };
-
-  const getPanelZoom = (index: number) => {
-    const delay = index * 0.18;
-    return clamp((introProgress - delay) / 1.15);
   };
 
   const getPanelExit = (index: number) => {
@@ -73,10 +68,6 @@ export function AboutMeIntro({
           const reveal = getPanelReveal(index);
           const exit = getPanelExit(index);
 
-          const zoomRaw = getPanelZoom(index);
-          const zoomEased = Math.pow(zoomRaw, 1.8);
-          const imageScale = 1.5 - zoomEased * 0.5;
-
           return (
             <article key={item.title} className={styles.panel}>
               <motion.div
@@ -89,7 +80,7 @@ export function AboutMeIntro({
               >
                 <motion.div
                   className={styles.imageMotion}
-                  animate={{ scale: imageScale }}
+                  animate={{ scale: 1 }}
                   transition={{
                     type: "tween",
                     ease: "easeOut",

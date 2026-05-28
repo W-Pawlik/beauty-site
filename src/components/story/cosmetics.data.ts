@@ -10,7 +10,10 @@ export const cosmeticsOffer: CosmeticProduct[] = [
     price: "149 zl",
     image: "/images/kosmetyk1.jpg",
     alt: "Zestaw pielegnacyjny TimeWise",
-    gallery: ["/images/kosmetyk2.jpg", "/images/kosmettyk3.jpg"],
+    gallery: [
+      "/images/kosmetyk2.jpg",
+      "/images/kosmettyk3.jpg",
+    ],
     detailedDescription:
       "Kompleksowy zestaw do codziennej pielegnacji twarzy. Pomaga utrzymac komfort skory i swiezy wyglad przez caly dzien.",
     actionDescription:

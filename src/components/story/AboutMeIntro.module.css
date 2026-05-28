@@ -62,7 +62,7 @@
 .panelImageLeft,
 .panelImageCenter,
 .panelImageRight {
-  object-fit: cover;
+  object-fit: fill;
   filter: saturate(0.88) contrast(1.04) brightness(0.74);
 }
 
