@@ -29,6 +29,9 @@ export function FooterSection() {
                   {item.label}
                 </a>
               ))}
+              <a href="/polityka-prywatnosci" className={styles.navLink}>
+                Polityka prywatności
+              </a>
             </nav>
           </div>
 

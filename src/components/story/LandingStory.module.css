@@ -1,3 +1,35 @@
+.skipLink {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #573d4d;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform 0.2s ease;
+}
+
+.skipLink:focus-visible {
+  transform: translateY(0);
+  outline: 3px solid #f0c5db;
+  outline-offset: 3px;
+}
+
+.storyScroll:focus {
+  outline: none;
+}
+
+.storyScroll:focus-visible {
+  outline: 3px solid #b96f98;
+  outline-offset: -3px;
+}
+
 .storyScroll {
   height: 100svh;
   overflow-y: auto;

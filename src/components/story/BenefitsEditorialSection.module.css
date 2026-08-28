@@ -1,0 +1,364 @@
+.section {
+  position: relative;
+  /* The stage stays pinned while this short runway drives the reasons forward. */
+  height: calc(100svh + 140svh);
+  margin: clamp(92px, 11vw, 150px) 0 clamp(76px, 9vw, 120px);
+  background: #fff;
+}
+
+.pinStage::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  right: -180px;
+  width: 520px;
+  height: 520px;
+  border: 1px solid rgba(228, 173, 202, 0.38);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 28px rgba(228, 173, 202, 0.08),
+    0 0 0 56px rgba(228, 173, 202, 0.05);
+  pointer-events: none;
+}
+
+.pinStage {
+  position: sticky;
+  top: 0;
+  display: flex;
+  height: 100svh;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: clamp(28px, 5vw, 64px) 0;
+}
+
+.pinStage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 78% 44%,
+    rgba(248, 232, 241, 0.42),
+    transparent 35%
+  );
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.header {
+  max-width: 650px;
+}
+
+.kicker,
+.indexHint,
+.statementEyebrow {
+  margin: 0;
+  color: rgba(73, 65, 63, 0.66);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 14px 0 0;
+  color: #49413f;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(2.2rem, 4.4vw, 4.1rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 0.98;
+}
+
+.editorialLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: clamp(54px, 10vw, 142px);
+  margin-top: clamp(34px, 5vw, 64px);
+}
+
+.statementColumn {
+  min-height: 0;
+}
+
+.statementSticky {
+  position: relative;
+}
+
+.counter {
+  display: flex;
+  align-items: baseline;
+  font-family: var(--font-heading), serif;
+  line-height: 0.8;
+}
+
+.counterActive {
+  color: #49413f;
+  font-size: clamp(5.5rem, 10vw, 9rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+}
+
+.counterTotal {
+  margin-left: 8px;
+  color: rgba(73, 65, 63, 0.32);
+  font-size: clamp(1.4rem, 2vw, 2rem);
+}
+
+.statementRule {
+  width: min(100%, 420px);
+  height: 1px;
+  margin-top: 32px;
+  background: linear-gradient(90deg, #c57da5 0%, rgba(197, 125, 165, 0.16) 100%);
+}
+
+.statementContent {
+  min-height: 185px;
+  max-width: 470px;
+  padding-top: 28px;
+}
+
+.statementTitle {
+  margin: 12px 0 0;
+  color: #49413f;
+  font-family: var(--font-heading), serif;
+  font-size: clamp(2rem, 3.4vw, 3.25rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.statementText {
+  margin: 20px 0 0;
+  color: rgba(73, 65, 63, 0.82);
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(0.98rem, 1.1vw, 1.08rem);
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.note {
+  max-width: 31ch;
+  margin: clamp(38px, 5vw, 62px) 0 0;
+  color: rgba(73, 65, 63, 0.68);
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+  font-style: italic;
+  line-height: 1.25;
+}
+
+.indexColumn {
+  align-self: center;
+}
+
+.indexHint {
+  margin-bottom: 18px;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+}
+
+.indexList {
+  border-top: 1px solid rgba(73, 65, 63, 0.18);
+}
+
+.indexItem {
+  position: relative;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 54px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  min-height: 78px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(73, 65, 63, 0.18);
+  background: transparent;
+  color: rgba(73, 65, 63, 0.5);
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.28s ease, padding 0.28s ease;
+}
+
+.indexItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 2px;
+  background: #c57da5;
+  transition: width 0.32s ease;
+}
+
+.indexItem:hover,
+.indexItemActive {
+  color: #49413f;
+}
+
+.indexItemActive {
+  padding-left: 12px;
+}
+
+.indexItemActive::before {
+  width: 100%;
+}
+
+.indexNumber {
+  color: #c57da5;
+  font-family: var(--font-heading), serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.indexTitle {
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  line-height: 1.1;
+}
+
+.indexMark {
+  color: #c57da5;
+  font-family: var(--font-body), sans-serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+@media (max-width: 820px) {
+  .editorialLayout {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.8fr);
+    gap: 28px;
+  }
+
+  .editorialLayout {
+    margin-top: 30px;
+  }
+
+  .statementContent {
+    min-height: 150px;
+  }
+
+  .indexColumn {
+    align-self: stretch;
+  }
+}
+
+@media (min-width: 561px) and (max-height: 820px) {
+  .pinStage {
+    padding: 20px 0;
+  }
+
+  .title {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+  }
+
+  .editorialLayout {
+    margin-top: 24px;
+  }
+
+  .counterActive {
+    font-size: clamp(4.5rem, 8vw, 7rem);
+  }
+
+  .statementRule {
+    margin-top: 20px;
+  }
+
+  .statementContent {
+    min-height: 145px;
+    padding-top: 18px;
+  }
+
+  .note {
+    margin-top: 24px;
+  }
+
+  .indexItem {
+    min-height: 64px;
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    width: min(100% - 40px, 420px);
+  }
+
+  .section {
+    margin-top: 78px;
+  }
+
+  .pinStage::after {
+    top: 6%;
+    right: -190px;
+    width: 300px;
+    height: 300px;
+  }
+
+  .pinStage {
+    padding: 20px 0;
+  }
+
+  .title {
+    margin-top: 10px;
+    font-size: clamp(1.9rem, 8.5vw, 2.65rem);
+  }
+
+  .editorialLayout {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 22px;
+  }
+
+  .counterActive {
+    font-size: 4.5rem;
+  }
+
+  .statementRule {
+    margin-top: 14px;
+  }
+
+  .statementContent {
+    min-height: 126px;
+    padding-top: 14px;
+  }
+
+  .statementText {
+    margin-top: 10px;
+    line-height: 1.52;
+  }
+
+  .note {
+    margin-top: 12px;
+    font-size: 1.08rem;
+  }
+
+  .indexHint {
+    margin-bottom: 6px;
+  }
+
+  .indexItem {
+    grid-template-columns: 42px 1fr auto;
+    min-height: 54px;
+    gap: 10px;
+  }
+
+  .indexItemActive {
+    padding-left: 8px;
+  }
+
+  .indexTitle {
+    font-size: 1.22rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indexItem,
+  .indexItem::before {
+    transition: none;
+  }
+}

@@ -16,8 +16,35 @@ const bodyFont = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Agnieszka Luzarska Mary Kay",
-  description: "Landing page for a Mary Kay beauty consultant.",
+  title: {
+    default: "Agnieszka Luzarska | Konsultacje pielęgnacyjne i makijaż",
+    template: "%s | Agnieszka Luzarska",
+  },
+  description:
+    "Konsultacje pielęgnacyjne, makijażowe i spotkania beauty z Agnieszką Luzarską. Spokojne, praktyczne wsparcie dopasowane do Twoich potrzeb.",
+  applicationName: "Agnieszka Luzarska",
+  authors: [{ name: "Agnieszka Luzarska" }],
+  creator: "Agnieszka Luzarska",
+  publisher: "Agnieszka Luzarska",
+  keywords: [
+    "Agnieszka Luzarska",
+    "konsultacje pielęgnacyjne",
+    "makijaż",
+    "Mary Kay",
+    "spotkania beauty",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "pl_PL",
+    siteName: "Agnieszka Luzarska",
+    title: "Agnieszka Luzarska | Konsultacje pielęgnacyjne i makijaż",
+    description:
+      "Spokojne, praktyczne konsultacje pielęgnacyjne, makijażowe i spotkania beauty.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: "/images/iconForWebsiteTab.png",
     shortcut: "/images/iconForWebsiteTab.png",

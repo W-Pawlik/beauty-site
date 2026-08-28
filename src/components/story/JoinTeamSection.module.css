@@ -47,132 +47,220 @@
 }
 
 .pillarsGrid {
+  position: relative;
   margin-top: clamp(24px, 3vw, 40px);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(14px, 2vw, 24px);
 }
 
+.pillarsGrid::before {
+  content: "";
+  position: absolute;
+  top: 12%;
+  bottom: 12%;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(228, 173, 202, 0.78) 22%,
+    rgba(228, 173, 202, 0.78) 78%,
+    transparent
+  );
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
 .pillarCard {
   position: relative;
-  min-height: clamp(480px, 48vw, 620px);
-  border: 1px solid rgba(73, 65, 63, 0.12);
-  border-radius: 30px;
-  padding: clamp(16px, 2vw, 22px);
+  min-height: clamp(500px, 42vw, 570px);
+  border: 1px solid rgba(73, 65, 63, 0.13);
+  border-radius: 30px 30px 30px 8px;
+  padding: clamp(30px, 4vw, 58px) clamp(28px, 4vw, 62px);
   overflow: hidden;
-  box-shadow: 0 18px 52px rgba(73, 65, 63, 0.12);
+  box-shadow: 0 20px 50px rgba(73, 65, 63, 0.08);
   isolation: isolate;
 }
 
 .pillarCard::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(
-      circle at 20% 18%,
-      rgba(255, 255, 255, 0.5),
-      transparent 46%
-    ),
-    radial-gradient(
-      circle at 78% 82%,
-      rgba(255, 255, 255, 0.28),
-      transparent 52%
-    );
+  top: -86px;
+  right: -60px;
+  width: 250px;
+  height: 250px;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 26px rgba(255, 255, 255, 0.14),
+    0 0 0 52px rgba(255, 255, 255, 0.1);
   pointer-events: none;
 }
 
 .pillarCardProduct {
-  background: linear-gradient(148deg, #f9ecf4 0%, #fdf7fa 100%);
+  background: linear-gradient(135deg, #f8eaf2 0%, #fffafd 72%);
 }
 
 .pillarCardCooperation {
-  background: linear-gradient(148deg, #f3ecfa 0%, #fbf8fd 100%);
+  border-radius: 8px 30px 30px 30px;
+  background: linear-gradient(135deg, #f4eef9 0%, #fdfbff 72%);
 }
 
 .pillarIndex {
   position: absolute;
-  top: clamp(20px, 2.2vw, 30px);
-  left: clamp(20px, 2.2vw, 30px);
+  top: clamp(24px, 3vw, 42px);
+  left: clamp(28px, 4vw, 62px);
   z-index: 5;
   display: inline-flex;
-  min-width: clamp(58px, 5.2vw, 72px);
-  min-height: clamp(58px, 5.2vw, 72px);
-  border-radius: 999px;
-  align-items: center;
-  justify-content: center;
-  background: rgba(228, 173, 202, 0.5);
-  border: 1px solid rgba(214, 153, 186, 0.55);
-  color: rgba(73, 65, 63, 0.82);
-  font-family: var(--font-body), sans-serif;
-  font-size: clamp(1rem, 1.25vw, 1.42rem);
-  font-weight: 700;
-  letter-spacing: 0.07em;
-}
-
-.pillarVisual {
-  position: relative;
-  z-index: 1;
-  margin: clamp(56px, 5.2vw, 76px) clamp(8px, 1vw, 12px) 0;
-  height: clamp(220px, 24vw, 320px);
-  border-radius: 24px;
-  overflow: hidden;
-}
-
-.pillarVisualImage {
-  object-fit: cover;
-  object-position: center;
-}
-
-.pillarVisual::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.03) 0%,
-    rgba(255, 255, 255, 0.26) 100%
-  );
+  color: rgba(73, 65, 63, 0.23);
+  font-family: var(--font-heading), serif;
+  font-size: clamp(4.5rem, 8vw, 7.5rem);
+  font-weight: 500;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
   pointer-events: none;
+}
+
+.pillarCardCooperation .pillarIndex {
+  color: rgba(123, 97, 135, 0.2);
 }
 
 .pillarContent {
   position: relative;
   z-index: 3;
-  margin: clamp(-16px, -1.2vw, -10px) clamp(8px, 1vw, 12px)
-    clamp(8px, 1vw, 12px);
-  padding: clamp(24px, 2.8vw, 38px);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.88);
-  box-shadow:
-    0 14px 30px rgba(73, 65, 63, 0.08),
-    0 1px 0 rgba(255, 255, 255, 0.95) inset;
-  backdrop-filter: blur(4px);
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: clamp(90px, 9vw, 124px);
+}
+
+.pillarEyebrow,
+.pillarFitLabel {
+  margin: 0;
+  color: rgba(73, 65, 63, 0.62);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 .pillarTitle {
-  margin: 0;
+  margin: 12px 0 0;
+  max-width: 12ch;
   color: #49413f;
   font-family: var(--font-heading), serif;
-  font-size: clamp(1.6rem, 2.55vw, 2.35rem);
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: 0.01em;
+  font-size: clamp(2.1rem, 3.5vw, 3.55rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: 0.005em;
 }
 
 .pillarText {
-  margin: clamp(12px, 1.5vw, 20px) 0 0;
+  margin: 22px 0 0;
+  max-width: 37ch;
   color: rgba(73, 65, 63, 0.84);
   font-family: var(--font-body), sans-serif;
-  font-size: clamp(0.98rem, 1.1vw, 1.12rem);
+  font-size: clamp(0.98rem, 1.1vw, 1.08rem);
   font-weight: 500;
-  line-height: 1.62;
-  max-width: 30ch;
+  line-height: 1.65;
 }
 
+.pillarDivider {
+  width: min(100%, 330px);
+  height: 1px;
+  margin: clamp(24px, 3vw, 34px) 0 20px;
+  background: rgba(73, 65, 63, 0.16);
+}
+
+.pillarList {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pillarList li {
+  position: relative;
+  padding-left: 20px;
+  color: rgba(73, 65, 63, 0.8);
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.pillarList li::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(197, 125, 165, 0.78);
+  border-radius: 50%;
+}
+
+.pillarLink {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 30px;
+  color: #49413f;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.24s ease, gap 0.24s ease;
+}
+
+.pillarLink span:last-child {
+  color: #c57da5;
+  font-size: 1.15rem;
+  line-height: 0.8;
+}
+
+.pillarLink:hover {
+  gap: 17px;
+  color: #c57da5;
+}
+
+.pillarsBridge {
+  margin: clamp(22px, 3vw, 34px) auto 0;
+  max-width: 38ch;
+  color: rgba(73, 65, 63, 0.68);
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-style: italic;
+  line-height: 1.25;
+  text-align: center;
+}
+
+/* Kept intentionally compact on smaller screens so the two paths still feel like one story. */
+.pillarCardProduct,
+.pillarCardCooperation {
+  min-width: 0;
+}
+
+/* Legacy image styles are no longer used by this section. */
+.pillarVisual,
+.pillarVisualImage {
+  display: none;
+}
+
+/*
+  The content styles below belong to the benefits cards and are kept separate
+  from the two-path introduction above.
+*/
 .benefitsBlock {
-  margin-top: clamp(100px, 7vw, 108px);
+  margin-top: 0;
   position: relative;
 }
 
@@ -548,6 +636,10 @@
     grid-template-columns: 1fr;
   }
 
+  .pillarsGrid::before {
+    display: none;
+  }
+
   .pillarCard {
     min-height: clamp(460px, 72vw, 580px);
   }
@@ -626,28 +718,21 @@
 @media (max-width: 760px) {
   .pillarCard {
     border-radius: 24px;
-    padding: 12px;
+    padding: 30px 24px 28px;
     min-height: auto;
   }
 
   .pillarIndex {
-    top: 16px;
-    left: 16px;
-    min-width: 54px;
-    min-height: 54px;
-    font-size: 0.95rem;
-  }
-
-  .pillarVisual {
-    margin: 48px 4px 0;
-    height: clamp(190px, 49vw, 260px);
-    border-radius: 18px;
+    top: 24px;
+    left: 24px;
+    min-width: 0;
+    min-height: 0;
+    font-size: clamp(4rem, 18vw, 5.5rem);
   }
 
   .pillarContent {
-    margin: -12px 4px 4px;
-    padding: 20px 18px 22px;
-    border-radius: 18px;
+    min-height: 0;
+    padding: 78px 0 0;
   }
 
   .pillarTitle {

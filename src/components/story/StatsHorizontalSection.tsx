@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import styles from "./StatsHorizontalSection.module.css";
 
@@ -9,7 +9,6 @@ type StatItem = {
   label: string;
   description: string;
   suffix?: string;
-  toneClass: string;
 };
 
 const stats: StatItem[] = [
@@ -17,24 +16,15 @@ const stats: StatItem[] = [
     value: 250,
     label: "zadowolonych klientek",
     description:
-      "Regularne konsultacje pielegnacyjne i makijazowe prowadzone stacjonarnie oraz online.",
+      "Indywidualne konsultacje pielęgnacyjne i makijażowe prowadzone z uważnością na potrzeby każdej kobiety.",
     suffix: "+",
-    toneClass: "cardRose",
   },
   {
     value: 50,
-    label: "zorganizowanych imprez beauty",
+    label: "zorganizowanych wydarzeń beauty",
     description:
-      "Warsztaty i wydarzenia, ktore buduja relacje i pokazuja jak laczyc pielegnacje z codzienna praktyka.",
+      "Warsztaty i spotkania, które łączą praktyczną wiedzę, dobrą atmosferę i relacje.",
     suffix: "+",
-    toneClass: "cardSand",
-  },
-  {
-    value: 25,
-    label: "lat doswiadczenia",
-    description:
-      "Konsekwentny rozwoj, mentoring i wsparcie kobiet na kolejnych etapach ich beauty journey.",
-    toneClass: "cardLight",
   },
 ];
 
@@ -67,31 +57,39 @@ function Counter({ target, start, durationMs = 1200 }: CounterProps) {
 
     frameId = requestAnimationFrame(tick);
 
-    return () => {
-      cancelAnimationFrame(frameId);
-    };
+    return () => cancelAnimationFrame(frameId);
   }, [durationMs, start, target]);
 
   return <>{value.toLocaleString("pl-PL")}</>;
 }
 
-function StatCard({ item }: { item: StatItem }) {
-  const cardRef = useRef<HTMLElement>(null);
-  const inView = useInView(cardRef, { amount: 0.55, once: true });
-
+function SupportingStat({
+  item,
+  index,
+  inView,
+}: {
+  item: StatItem;
+  index: number;
+  inView: boolean;
+}) {
   return (
-    <article
-      ref={cardRef}
-      className={`${styles.card} ${styles[item.toneClass as keyof typeof styles]}`}
+    <motion.article
+      className={`${styles.statCard} ${index === 1 ? styles.statCardSand : ""}`}
+      initial={{ opacity: 0, y: 26 }}
+      animate={inView ? { opacity: 1, y: 0 } : undefined}
+      transition={{
+        duration: 0.7,
+        delay: 0.16 + index * 0.12,
+        ease: [0.22, 1, 0.36, 1],
+      }}
     >
-      <div className={styles.cardGlow} />
-      <p className={styles.cardValue}>
+      <p className={styles.statValue}>
         <Counter target={item.value} start={inView} />
         {item.suffix ?? ""}
       </p>
-      <h3 className={styles.cardLabel}>{item.label}</h3>
-      <p className={styles.cardDescription}>{item.description}</p>
-    </article>
+      <h3 className={styles.statLabel}>{item.label}</h3>
+      <p className={styles.statDescription}>{item.description}</p>
+    </motion.article>
   );
 }
 
@@ -103,53 +101,74 @@ export function StatsHorizontalSection({
   scrollContainerRef,
 }: StatsHorizontalSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const railRef = useRef<HTMLDivElement>(null);
-  const [xRange, setXRange] = useState({ start: 0, end: 0 });
-
-  const { scrollYProgress } = useScroll({
-    container: scrollContainerRef,
-    target: sectionRef,
-    offset: ["start start", "end end"],
+  const inView = useInView(sectionRef, {
+    root: scrollContainerRef,
+    amount: 0.28,
+    once: true,
   });
-
-  useEffect(() => {
-    const calculate = () => {
-      const viewportWidth = viewportRef.current?.clientWidth ?? 0;
-      const railWidth = railRef.current?.scrollWidth ?? 0;
-
-      if (!viewportWidth || !railWidth) {
-        return;
-      }
-
-      const start = viewportWidth * 0.78;
-      const end = -(railWidth - viewportWidth) - viewportWidth * 0.08;
-      setXRange({ start, end });
-    };
-
-    calculate();
-    window.addEventListener("resize", calculate);
-
-    return () => {
-      window.removeEventListener("resize", calculate);
-    };
-  }, []);
-
-  const x = useTransform(scrollYProgress, [0, 1], [xRange.start, xRange.end]);
 
   return (
     <section className={styles.section} id="osiagniecia" ref={sectionRef}>
-      <div className={styles.sticky} ref={viewportRef}>
-        <div className={styles.headingWrap}>
-          <p className={styles.kicker}>LICZBY, KTORE STOJĄ ZA DOSWIADCZENIEM</p>
-          <h2 className={styles.heading}>Czyli moje ośiągnięcia</h2>
+      <div className={styles.orb} aria-hidden="true" />
+      <div className={styles.container}>
+        <motion.div
+          className={styles.header}
+          initial={{ opacity: 0, y: 22 }}
+          animate={inView ? { opacity: 1, y: 0 } : undefined}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div>
+            <p className={styles.kicker}>Liczby, które stoją za doświadczeniem</p>
+            <h2 className={styles.heading}>Doświadczenie, które ma znaczenie.</h2>
+          </div>
+          <p className={styles.intro}>
+            Za każdą liczbą stoi rozmowa, zaufanie i konkretna pomoc, od pierwszego
+            spotkania po pielęgnację, która naprawdę pasuje do codzienności.
+          </p>
+        </motion.div>
+
+        <div className={styles.statsGrid}>
+          <motion.article
+            className={styles.featureCard}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : undefined}
+            transition={{
+              duration: 0.75,
+              delay: 0.08,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            <span className={styles.featureEyebrow}>Najważniejsza liczba</span>
+            <div className={styles.featureNumber}>
+              <Counter target={25} start={inView} />
+              <span>lat</span>
+            </div>
+            <h3 className={styles.featureLabel}>praktyki i rozwoju</h3>
+            <p className={styles.featureDescription}>
+              Lata nauki, rozmów i pracy z kobietami, które pozwalają spojrzeć na
+              beauty szerzej, przez pryzmat pewności siebie, wygody i codziennych
+              rytuałów.
+            </p>
+          </motion.article>
+
+          {stats.map((item, index) => (
+            <SupportingStat
+              key={item.label}
+              item={item}
+              index={index}
+              inView={inView}
+            />
+          ))}
         </div>
 
-        <motion.div className={styles.rail} style={{ x }} ref={railRef}>
-          {stats.map((item) => (
-            <StatCard key={item.label} item={item} />
-          ))}
-        </motion.div>
+        <motion.p
+          className={styles.signatureLine}
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : undefined}
+          transition={{ duration: 0.7, delay: 0.55 }}
+        >
+          Wiedza, która zostaje z Tobą na dłużej.
+        </motion.p>
       </div>
     </section>
   );

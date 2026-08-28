@@ -23,6 +23,7 @@ function CosmeticsPanel({
   return (
     <motion.div
       key="cosmetics"
+      id="offer-panel-cosmetics"
       className={styles.panel}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -104,6 +105,7 @@ function EventsPanel() {
   return (
     <motion.div
       key="events"
+      id="offer-panel-events"
       className={styles.panel}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -202,6 +204,7 @@ export function OfferShowcaseSection() {
                 type="button"
                 role="tab"
                 aria-selected={isActive}
+                aria-controls={`offer-panel-${tab.key}`}
                 className={styles.tabButton}
                 onClick={() => {
                   setActiveTab(tab.key);

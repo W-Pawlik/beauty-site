@@ -46,10 +46,10 @@ export function AboutMeSection({ transitionProgress = 0 }: AboutMeSectionProps) 
         <div className={styles.portraitRing}>
           <div className={styles.portrait}>
             <Image
-              src="/images/AgnieszkaLImages/IMG_5141.jpeg"
+              src="/images/AgnieszkaLImages/optimized/IMG_5141.jpeg"
               alt="Agnieszka Luzarska"
               fill
-              quality={100}
+              quality={90}
               sizes="(max-width: 980px) 38vw, 220px"
               className={styles.portraitImage}
             />
@@ -60,16 +60,16 @@ export function AboutMeSection({ transitionProgress = 0 }: AboutMeSectionProps) 
           <h2 className={styles.title}>O MNIE</h2>
           <div className={styles.columns}>
             <p>
-              Nazywam sie Agnieszka Luzarska i od lat pomagam kobietom budowac
-              codzienna pewnosc siebie przez dobrze dobrana pielegnacje oraz
-              makijaz. W pracy lacze estetyke z praktyka, aby efekty byly
-              naturalne i wygodne na co dzien.
+              Pochodzę z Podlasia. Bliskość natury nauczyła mnie cenić harmonię,
+              ciszę i uważność, także w rozmowie z drugą osobą. Zanim związałam
+              się z Mary Kay, przez osiem lat pracowałam jako nauczycielka
+              filozofii i etyki.
             </p>
             <p>
-              Podczas konsultacji stawiam na spokojna atmosfere, edukacje i
-              indywidualne podejscie. Pokazuje konkretne kroki, ktore mozna od
-              razu wdrozyc, aby pielegnacja i makijaz dawaly realny komfort oraz
-              trwaly efekt.
+              Dziś łączę doświadczenie pedagogiczne z pracą konsultantki i
+              liderki. Prowadzę spotkania, pokazuję konkretne kroki i wspieram
+              kobiety w budowaniu własnej drogi. Robię to spokojnie, rzetelnie i po
+              swojemu.
             </p>
           </div>
         </div>

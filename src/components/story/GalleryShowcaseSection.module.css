@@ -81,19 +81,10 @@
   overflow: hidden;
 }
 
-.tileImageBg {
-  object-fit: cover;
-  object-position: center;
-  filter: blur(12px) saturate(0.95);
-  transform: scale(1.08);
-  opacity: 0.5;
-}
-
 .tileImage {
   object-fit: contain;
   object-position: center;
-  padding: 8px;
-  z-index: 1;
+  padding: 6px;
 }
 
 .tileMeta {
@@ -146,19 +137,9 @@
   overflow: hidden;
 }
 
-.modalImageBg {
-  object-fit: cover;
-  object-position: center;
-  filter: blur(16px) saturate(0.95);
-  transform: scale(1.08);
-  opacity: 0.45;
-}
-
 .modalImage {
   object-fit: contain;
   object-position: center;
-  padding: 12px;
-  z-index: 1;
 }
 
 .modalMeta {

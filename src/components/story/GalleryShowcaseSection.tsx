@@ -16,43 +16,43 @@ type GalleryItem = {
 const galleryItems: GalleryItem[] = [
   {
     id: "g-1",
-    src: "/images/AgnieszkaLImages/optimized/IMG_5141.jpeg",
-    alt: "Portret kobiety beauty",
+    src: "/images/AgnieszkaLImages/new/portrait-blue-chair.webp",
+    alt: "Agnieszka Luzarska w niebieskim żakiecie",
     title: "Makijaz okazjonalny",
     caption: "Delikatne wykonczenie i dopasowanie do typu urody.",
   },
   {
     id: "g-2",
-    src: "/images/AgnieszkaLImages/optimized/IMG_7649.jpeg",
-    alt: "Kobieta z makijazem",
+    src: "/images/AgnieszkaLImages/new/floral-portrait.webp",
+    alt: "Agnieszka Luzarska na tle kwiatowej ścianki",
     title: "Glow skin look",
     caption: "Naturalny blask i lekka, trwala formula.",
   },
   {
     id: "g-3",
-    src: "/images/AgnieszkaLImages/optimized/IMG_5410.jpeg",
-    alt: "Portret kobiety",
+    src: "/images/AgnieszkaLImages/new/portrait-legacy.webp",
+    alt: "Portret Agnieszki Luzarskiej",
     title: "Kobieca pewnosc",
     caption: "Makijaz podkreslajacy naturalne atuty.",
   },
   {
     id: "g-4",
-    src: "/images/AgnieszkaLImages/optimized/IMG_5411.jpeg",
-    alt: "Kobieta beauty z bliska",
+    src: "/images/AgnieszkaLImages/new/products-pink.webp",
+    alt: "Agnieszka Luzarska podczas prezentacji produktów",
     title: "Styl i elegancja",
     caption: "Dopasowany look na co dzien i na wyjscia.",
   },
   {
     id: "g-5",
-    src: "/images/AgnieszkaLImages/optimized/IMG_5412.jpeg",
-    alt: "Portret kobiecy beauty",
+    src: "/images/AgnieszkaLImages/new/team-event.webp",
+    alt: "Agnieszka Luzarska podczas wydarzenia zespołowego",
     title: "Subtelne wykonczenie",
     caption: "Harmonia koloru i pielegnacji cery.",
   },
   {
     id: "g-6",
-    src: "/images/AgnieszkaLImages/optimized/IMG_5415.jpeg",
-    alt: "Kobieta rozmawiajaca przez telefon",
+    src: "/images/AgnieszkaLImages/new/products-blue.webp",
+    alt: "Agnieszka Luzarska z produktami Mary Kay",
     title: "Kontakt i relacja",
     caption: "Bliska wspolpraca i indywidualne doradztwo beauty.",
   },
@@ -108,17 +108,11 @@ export function GalleryShowcaseSection() {
               >
                 <Image
                   src={item.src}
-                  alt=""
-                  aria-hidden="true"
-                  fill
-                  sizes="(max-width: 980px) 50vw, 33vw"
-                  className={styles.tileImageBg}
-                />
-                <Image
-                  src={item.src}
                   alt={item.alt}
                   fill
                   sizes="(max-width: 980px) 50vw, 33vw"
+                  priority={index === 0}
+                  quality={88}
                   className={styles.tileImage}
                 />
               </motion.div>
@@ -154,17 +148,10 @@ export function GalleryShowcaseSection() {
               >
                 <Image
                   src={selectedItem.src}
-                  alt=""
-                  aria-hidden="true"
-                  fill
-                  sizes="90vw"
-                  className={styles.modalImageBg}
-                />
-                <Image
-                  src={selectedItem.src}
                   alt={selectedItem.alt}
                   fill
                   sizes="90vw"
+                  quality={90}
                   className={styles.modalImage}
                 />
               </motion.div>

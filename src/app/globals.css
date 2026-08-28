@@ -26,3 +26,19 @@ body {
   font-weight: 500;
   margin: 0;
 }
+
+:focus-visible {
+  outline: 3px solid #b96f98;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -298,6 +298,7 @@ export function ContactSection() {
                   type="button"
                   role="tab"
                   aria-selected={active}
+                  aria-controls={`contact-panel-${item.id}`}
                   className={styles.modeCard}
                   onClick={() => setMode(item.id)}
                   whileHover={{ y: -2 }}
@@ -316,28 +317,50 @@ export function ContactSection() {
             })}
           </div>
 
-          <form className={styles.form} onSubmit={handleSubmit}>
+            <form
+              className={styles.form}
+              onSubmit={handleSubmit}
+              aria-label="Formularz kontaktowy"
+            >
             <div className={styles.fieldGrid}>
               <label className={styles.label}>
                 Imie i nazwisko
-                <input className={styles.input} type="text" name="name" required />
+                <input
+                  className={styles.input}
+                  type="text"
+                  name="name"
+                  autoComplete="name"
+                  required
+                />
               </label>
 
               <label className={styles.label}>
                 E-mail
-                <input className={styles.input} type="email" name="email" required />
+                <input
+                  className={styles.input}
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  required
+                />
               </label>
             </div>
 
             <label className={styles.label}>
               Telefon
-              <input className={styles.input} type="tel" name="phone" />
+              <input
+                className={styles.input}
+                type="tel"
+                name="phone"
+                autoComplete="tel"
+              />
             </label>
 
             <label className={styles.productToggle}>
               <input
                 className={styles.productToggleInput}
                 type="checkbox"
+                name="includeProductQuestion"
                 checked={includeProductQuestion}
                 onChange={(event) => {
                   setIncludeProductQuestion(event.target.checked);
@@ -393,6 +416,7 @@ export function ContactSection() {
                     <select
                       className={`${styles.select} ${styles.productSelect}`}
                       name="productNameInput"
+                      aria-label="Wybierz produkt z oferty"
                       value={productNameInput}
                       onChange={(event) => setProductNameInput(event.target.value)}
                     >
@@ -447,8 +471,9 @@ export function ContactSection() {
 
             <AnimatePresence mode="wait">
               {mode === "skin-card" ? (
-                <motion.div
-                  key="skin-card"
+                  <motion.div
+                    key="skin-card"
+                    id="contact-panel-skin-card"
                   className={styles.skinQuestions}
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -477,8 +502,9 @@ export function ContactSection() {
                   ))}
                 </motion.div>
               ) : (
-                <motion.div
-                  key="message"
+                  <motion.div
+                    key="message"
+                    id="contact-panel-message"
                   className={styles.messageHint}
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}

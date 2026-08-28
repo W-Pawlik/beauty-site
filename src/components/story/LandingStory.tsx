@@ -409,7 +409,17 @@ export function LandingStory() {
   const stickyHeaderVisibility = stickyHeaderReveal * (isStickyVisible ? 1 : 0);
 
   return (
-    <main ref={storyRef} className={styles.storyScroll}>
+    <>
+      <a className={styles.skipLink} href="#content">
+        Przejdź do głównej treści
+      </a>
+      <main
+        id="content"
+        ref={storyRef}
+        className={styles.storyScroll}
+        tabIndex={0}
+        aria-label="Główna treść strony Agnieszki Luzarskiej"
+      >
       <div
         className={styles.stickyHeaderLayer}
         style={{
@@ -459,6 +469,7 @@ export function LandingStory() {
       <ContactParallaxTeaser />
       <ContactSection />
       <FooterSection />
-    </main>
+      </main>
+    </>
   );
 }

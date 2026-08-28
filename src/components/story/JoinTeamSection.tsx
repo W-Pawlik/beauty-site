@@ -1,26 +1,33 @@
 ﻿"use client";
 
 import { Fragment } from "react";
-import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
-import { BenefitsStackedCards } from "./BenefitsStackedCards";
+import { BenefitsEditorialSection } from "./BenefitsEditorialSection";
 import styles from "./JoinTeamSection.module.css";
 
 const pillars = [
   {
-    title: "Produkt",
+    eyebrow: "Pierwszy krok",
+    title: "Zacznij od produktów",
     description:
-      "Pracujesz na sprawdzonych kosmetykach i uczysz klientki codziennej pielegnacji oraz makijazu.",
-    imageSrc: "/images/join_team_Product_image_png.png",
-    imageAlt: "Produkty kosmetyczne Mary Kay",
+      "Poznajesz kosmetyki, których możesz używać, polecać i uczyć na ich podstawie prostszej pielęgnacji.",
+    fit: [
+      "lubisz rozmowy o pielęgnacji i makijażu",
+      "chcesz zacząć spokojnie, we własnym tempie",
+      "cieszy Cię pomaganie innym kobietom",
+    ],
     variant: "product",
   },
   {
-    title: "Mozliwosci wspolpracy",
+    eyebrow: "Kolejny krok",
+    title: "Rozwijaj współpracę",
     description:
-      "Budujesz relacje, rozwijasz swoja marke osobista i krok po kroku tworzysz wlasny zespol.",
-    imageSrc: "/images/fds.png",
-    imageAlt: "Kobiety rozmawiajace o wspolpracy",
+      "Budujesz relacje, rozwijasz swoją markę osobistą i krok po kroku tworzysz własny zespół.",
+    fit: [
+      "szukasz większej elastyczności",
+      "chcesz rozwijać swoje kompetencje",
+      "myślisz o zbudowaniu własnego zespołu",
+    ],
     variant: "cooperation",
   },
 ] as const;
@@ -28,27 +35,19 @@ const pillars = [
 const benefits = [
   {
     title: "Elastyczny czas",
-    text: "Laczysz wspolprace z zyciem prywatnym i sama decydujesz o tempie rozwoju.",
-    imageSrc: "/images/team_benefits_flexible_time.png",
-    imageAlt: "Kobieta pracujaca elastycznie z telefonem",
+    text: "Łączysz współpracę z życiem prywatnym i sama decydujesz o tempie rozwoju.",
   },
   {
     title: "Wsparcie mentorskie",
-    text: "Otrzymujesz plan wdrozenia, materialy i praktyczne wskazowki na kazdym etapie.",
-    imageSrc: "/images/team_benefits_flexible_time.png",
-    imageAlt: "Mentorskie wsparcie podczas rozwoju w branzy beauty",
+    text: "Otrzymujesz plan wdrożenia, materiały i praktyczne wskazówki na każdym etapie.",
   },
   {
-    title: "Rozwoj kompetencji",
-    text: "Szkolenia z pielegnacji, makijazu, komunikacji i prowadzenia konsultacji.",
-    imageSrc: "/images/team_benefits_flexible_time.png",
-    imageAlt: "Rozwoj umiejetnosci i praktyka makijazu",
+    title: "Rozwój kompetencji",
+    text: "Szkolenia z pielęgnacji, makijażu, komunikacji i prowadzenia konsultacji.",
   },
   {
     title: "Dodatkowe premie",
-    text: "Bonusy i nagrody za aktywnosc, wyniki zespolu i konsekwentne dzialanie.",
-    imageSrc: "/images/team_benefits_flexible_time.png",
-    imageAlt: "Wydarzenie beauty i premie za zaangazowanie",
+    text: "Bonusy i nagrody za aktywność, wyniki zespołu i konsekwentne działanie.",
   },
 ];
 
@@ -56,19 +55,19 @@ const timelineSteps = [
   {
     number: "1",
     title: "Rozmowa poznawcza",
-    text: "Krotka rozmowa o Twoich celach, stylu pracy i tym, jak chcesz rozwijac wspolprace.",
+    text: "Krótka rozmowa o Twoich celach, stylu pracy i tym, jak chcesz rozwijać współpracę.",
     side: "left" as const,
   },
   {
     number: "2",
     title: "Plan startu",
-    text: "Ukladamy plan pierwszych 30 dni, materialy i konkretne kroki do pracy z klientkami.",
+    text: "Układamy plan pierwszych 30 dni, materiały i konkretne kroki do pracy z klientkami.",
     side: "right" as const,
   },
   {
     number: "3",
-    title: "Rozwoj i wsparcie",
-    text: "Wchodzisz w rytm dzialania, dostajesz mentoring i systematycznie budujesz swoj zespol.",
+    title: "Rozwój i wsparcie",
+    text: "Wchodzisz w rytm działania, dostajesz mentoring i systematycznie budujesz swój zespół.",
     side: "left" as const,
   },
 ];
@@ -137,12 +136,11 @@ export function JoinTeamSection() {
           transition={{ duration: 0.55, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.35 }}
         >
-          <p className={styles.kicker}>Dwie nogi biznesu Mary Kay</p>
-          <h2 className={styles.title}>Dolacz do mojego zespolu</h2>
+          <p className={styles.kicker}>Dwie możliwości · jeden początek</p>
+          <h2 className={styles.title}>Zacznij po swojemu</h2>
           <p className={styles.lead}>
-            Wspolpraca opiera sie na dwoch filarach: produkcie i mozliwosciach
-            wspolpracy. To model, ktory pozwala rozwijac sie etapami i budowac
-            stabilna baze klientek.
+            Nie musisz od razu wiedzieć, dokąd dojdziesz. Możesz zacząć od tego,
+            co dziś jest Ci najbliższe, a z czasem połączyć obie drogi.
           </p>
         </motion.header>
 
@@ -162,27 +160,32 @@ export function JoinTeamSection() {
             >
               <span className={styles.pillarIndex}>{`0${index + 1}`}</span>
 
-              <div className={styles.pillarVisual}>
-                <Image
-                  src={pillar.imageSrc}
-                  alt={pillar.imageAlt}
-                  fill
-                  className={styles.pillarVisualImage}
-                  sizes="(max-width: 980px) 100vw, 50vw"
-                />
-              </div>
-
               <div className={styles.pillarContent}>
+                <p className={styles.pillarEyebrow}>{pillar.eyebrow}</p>
                 <h3 className={styles.pillarTitle}>{pillar.title}</h3>
                 <p className={styles.pillarText}>{pillar.description}</p>
+                <div className={styles.pillarDivider} />
+                <p className={styles.pillarFitLabel}>Dla Ciebie, jeśli...</p>
+                <ul className={styles.pillarList}>
+                  {pillar.fit.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <a className={styles.pillarLink} href="#kontakt">
+                  <span>Porozmawiajmy</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
               </div>
             </motion.article>
           ))}
         </div>
 
+        <p className={styles.pillarsBridge}>
+          Możesz zacząć od jednej drogi, a z czasem połączyć obie.
+        </p>
+
         <div className={styles.benefitsBlock}>
-          <p className={styles.benefitsKicker}>Dlaczego warto</p>
-          <BenefitsStackedCards items={benefits} />
+          <BenefitsEditorialSection items={benefits} />
         </div>
 
         <motion.article
@@ -192,8 +195,8 @@ export function JoinTeamSection() {
           viewport={{ once: true, amount: 0.38 }}
         >
           <div className={styles.pathHeader}>
-            <p className={styles.pathKicker}>Sciezka startowa</p>
-            <h3 className={styles.pathTitle}>Jak wyglada dolaczenie do zespolu</h3>
+            <p className={styles.pathKicker}>Ścieżka startowa</p>
+            <h3 className={styles.pathTitle}>Jak wygląda dołączenie do zespołu</h3>
           </div>
 
           <div className={styles.timeline}>
