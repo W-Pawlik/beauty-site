@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import styles from "./GalleryShowcaseSection.module.css";
+import { IMAGE_BLUR_DATA_URL } from "./imagePlaceholders";
 
 type GalleryItem = {
   id: string;
@@ -112,7 +113,9 @@ export function GalleryShowcaseSection() {
                   fill
                   sizes="(max-width: 980px) 50vw, 33vw"
                   priority={index === 0}
-                  quality={88}
+                  quality={76}
+                  placeholder="blur"
+                  blurDataURL={IMAGE_BLUR_DATA_URL}
                   className={styles.tileImage}
                 />
               </motion.div>
@@ -151,7 +154,9 @@ export function GalleryShowcaseSection() {
                   alt={selectedItem.alt}
                   fill
                   sizes="90vw"
-                  quality={90}
+                  quality={82}
+                  placeholder="blur"
+                  blurDataURL={IMAGE_BLUR_DATA_URL}
                   className={styles.modalImage}
                 />
               </motion.div>

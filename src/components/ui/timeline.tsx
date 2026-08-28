@@ -75,13 +75,13 @@ export const Timeline = ({
         {data.map((item, index) => (
           <div
             key={`${item.title}-${index}`}
-            className="grid grid-cols-[124px_minmax(0,1fr)] gap-4 pt-10 md:flex md:justify-start md:gap-10 md:pt-32"
+            className="relative block pt-10 md:flex md:justify-start md:gap-10 md:pt-32"
           >
-            <div className="sticky top-24 z-30 flex items-start gap-3 self-start md:top-40 md:w-full md:max-w-xs md:gap-0 md:flex-row md:items-center lg:max-w-sm">
-              <div className="ml-3 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-[0_0_0_1px_rgba(73,65,63,0.08)] md:absolute md:left-3 md:ml-0">
+            <div className="sticky top-24 z-30 flex min-h-12 items-center gap-3 bg-[#fff8fc] py-2 pl-14 pr-2 backdrop-blur-sm md:top-40 md:w-full md:max-w-xs md:gap-0 md:bg-transparent md:p-0 md:flex-row md:items-center lg:max-w-sm">
+              <div className="absolute left-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-[0_0_0_1px_rgba(73,65,63,0.08)] md:left-3 md:top-1/2 md:-translate-y-1/2">
                 <div className="h-4 w-4 rounded-full border border-[#e4adca] bg-[#f5d9e9]" />
               </div>
-              <h3 className="mt-1 text-[1.9rem] font-semibold tracking-[0.08em] leading-none text-[#8c7a84] md:hidden">
+              <h3 className="text-[1.65rem] font-semibold tracking-[0.06em] leading-none text-[#8c7a84] md:hidden">
                 {item.title}
               </h3>
               <h3 className="hidden pl-20 text-4xl font-semibold tracking-[0.08em] text-[#8c7a84] md:block">
@@ -89,7 +89,7 @@ export const Timeline = ({
               </h3>
             </div>
 
-            <div className="relative w-full pr-5 md:pl-4 md:pr-4">
+            <div className="relative w-full min-w-0 pl-14 pr-0 pt-4 md:pl-4 md:pr-4 md:pt-0">
               {item.content}
             </div>
           </div>

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 import { Timeline, type TimelineEntry } from "@/components/ui/timeline";
+import { IMAGE_BLUR_DATA_URL } from "./imagePlaceholders";
 
 type TimelineRevealImageProps = {
   src: string;
@@ -46,7 +47,10 @@ function TimelineRevealImage({ src, alt }: TimelineRevealImageProps) {
           alt={alt}
           width={500}
           height={500}
-          quality={88}
+          sizes="(max-width: 767px) 42vw, 260px"
+          quality={76}
+          placeholder="blur"
+          blurDataURL={IMAGE_BLUR_DATA_URL}
           className="h-40 w-full bg-white object-contain md:h-44 lg:h-56"
         />
       </motion.button>
@@ -68,7 +72,9 @@ function TimelineRevealImage({ src, alt }: TimelineRevealImageProps) {
                   src={src}
                   alt={alt}
                   fill
-                  quality={92}
+                  quality={82}
+                  placeholder="blur"
+                  blurDataURL={IMAGE_BLUR_DATA_URL}
                   sizes="92vw"
                   className="object-contain"
                 />

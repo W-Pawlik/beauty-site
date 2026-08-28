@@ -212,8 +212,7 @@
 
   .badgeLeftBottom {
     left: 12px;
-    top: auto;
-    bottom: 66px;
+    top: 174px;
     width: 120px;
     height: 54px;
   }
@@ -236,7 +235,7 @@
     left: 20px;
     right: 20px;
     width: auto;
-    top: clamp(258px, 44svh, 320px);
+    top: clamp(248px, 42svh, 310px);
     transform: none;
     padding: 14px 16px 16px;
   }
@@ -257,9 +256,10 @@
   }
 
   .columns p {
-    font-size: 0.92rem;
-    line-height: 1.56;
+    font-size: 0.88rem;
+    line-height: 1.48;
     letter-spacing: 0.03em;
     padding-right: 0;
   }
+
 }

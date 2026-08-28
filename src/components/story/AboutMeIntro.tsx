@@ -2,6 +2,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { HeroHeader } from "@/components/hero/HeroHeader";
 import styles from "./AboutMeIntro.module.css";
+import { IMAGE_BLUR_DATA_URL } from "./imagePlaceholders";
 
 type AboutMeIntroProps = {
   transitionProgress?: number;
@@ -92,6 +93,10 @@ export function AboutMeIntro({
                     alt={item.alt}
                     fill
                     sizes="(max-width: 980px) 100vw, 33vw"
+                    loading="eager"
+                    placeholder="blur"
+                    blurDataURL={IMAGE_BLUR_DATA_URL}
+                    quality={76}
                     className={styles[item.imageClassName]}
                   />
                 </motion.div>

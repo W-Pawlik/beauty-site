@@ -62,7 +62,7 @@
 .panelImageLeft,
 .panelImageCenter,
 .panelImageRight {
-  object-fit: fill;
+  object-fit: cover;
   filter: saturate(0.88) contrast(1.04) brightness(0.74);
 }
 
@@ -128,6 +128,22 @@
   .panelTitle {
     top: 66%;
     font-size: clamp(1.7rem, 8vw, 2.6rem);
+    padding-inline: 18px;
+    line-height: 0.98;
+    text-wrap: balance;
+    text-shadow: 0 2px 18px rgba(12, 10, 12, 0.36);
+  }
+
+  .panelImageLeft {
+    object-position: center 22%;
+  }
+
+  .panelImageCenter {
+    object-position: center 27%;
+  }
+
+  .panelImageRight {
+    object-position: center 24%;
   }
 
 }

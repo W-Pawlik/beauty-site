@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { AnimatedUnderline } from "@/components/ui/animated-underline";
+import { IMAGE_BLUR_DATA_URL } from "@/components/story/imagePlaceholders";
 import { HeroHeader } from "./HeroHeader";
 import styles from "./HeroSection.module.css";
 
@@ -101,6 +102,9 @@ export function HeroSection({
               fill
               priority
               sizes="(max-width: 900px) 100vw, 56vw"
+              quality={78}
+              placeholder="blur"
+              blurDataURL={IMAGE_BLUR_DATA_URL}
               className={styles.heroImage}
             />
           </motion.div>
