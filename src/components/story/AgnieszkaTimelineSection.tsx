@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 import { Timeline, type TimelineEntry } from "@/components/ui/timeline";
 import { IMAGE_BLUR_DATA_URL } from "./imagePlaceholders";
+import styles from "./AgnieszkaTimelineSection.module.css";
 
 type TimelineRevealImageProps = {
   src: string;
@@ -36,7 +37,7 @@ function TimelineRevealImage({ src, alt }: TimelineRevealImageProps) {
         type="button"
         aria-label={`Powiększ zdjęcie: ${alt}`}
         onClick={() => setIsOpen(true)}
-        className="block w-full cursor-zoom-in overflow-hidden rounded-xl bg-white text-left shadow-[0_12px_36px_rgba(73,65,63,0.12)]"
+        className={`${styles.mobileStaticReveal} block w-full cursor-zoom-in overflow-hidden rounded-xl bg-white text-left shadow-[0_12px_36px_rgba(73,65,63,0.12)]`}
         initial={{ filter: "blur(14px)", opacity: 0.72, scale: 1.03 }}
         whileInView={{ filter: "blur(0px)", opacity: 1, scale: 1 }}
         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}

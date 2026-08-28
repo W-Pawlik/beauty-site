@@ -1,0 +1,11 @@
+.mobileStaticReveal {
+  /* Mobile devices show the timeline immediately, without the desktop reveal effect. */
+}
+
+@media (max-width: 767px) {
+  .mobileStaticReveal {
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

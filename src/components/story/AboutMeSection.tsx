@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "./AboutMeSection.module.css";
-import { IMAGE_BLUR_DATA_URL } from "./imagePlaceholders";
 
 type AboutMeSectionProps = {
   transitionProgress?: number;
@@ -50,10 +49,8 @@ export function AboutMeSection({ transitionProgress = 0 }: AboutMeSectionProps) 
               src="/images/AgnieszkaLImages/optimized/IMG_5141.jpeg"
               alt="Agnieszka Luzarska"
               fill
-              quality={78}
+              quality={90}
               sizes="(max-width: 980px) 38vw, 220px"
-              placeholder="blur"
-              blurDataURL={IMAGE_BLUR_DATA_URL}
               className={styles.portraitImage}
             />
           </div>

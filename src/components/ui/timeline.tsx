@@ -104,7 +104,7 @@ export const Timeline = ({
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0 w-[2px] rounded-full bg-gradient-to-t from-[#e4adca] via-[#cf8db2] to-transparent"
+            className="timeline-mobile-static-progress absolute inset-x-0 top-0 w-[2px] rounded-full bg-gradient-to-t from-[#e4adca] via-[#cf8db2] to-transparent"
           />
         </div>
       </div>

@@ -42,3 +42,10 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+@media (max-width: 767px) {
+  .timeline-mobile-static-progress {
+    height: 100% !important;
+    opacity: 1 !important;
+  }
+}
